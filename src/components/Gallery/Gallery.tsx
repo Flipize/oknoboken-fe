@@ -75,6 +75,7 @@ const Gallery = () => {
 
   //if (loading) return <div>Loading...</div>; // Loading state
   if (error) return <div>Error: {error.message}</div>; // Error state
+  if (loading) return <div>Loading...</div>; // Loading state
 
   return (
     <div>
