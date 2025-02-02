@@ -1,3 +1,3 @@
 export const properties = {
-  bakendurl: "http://localhost:8080",
+  bakendurl: "http://localhos:8080",
 };
