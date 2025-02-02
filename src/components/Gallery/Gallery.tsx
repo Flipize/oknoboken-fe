@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Gallery.css";
-import "../../properties";
-import { properties } from "../../properties";
+import useConfig from "../../useConfig";
 
 const Gallery = () => {
   interface Image {
@@ -21,12 +20,14 @@ const Gallery = () => {
     console.log("Image set: " + image.filename);
   };
 
+  const config = useConfig();
+  const apiUrl = config ? config.apiUrl : "";
+
   useEffect(() => {
+    if (!config) return;
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          properties.bakendurl + "/api/v1/image/info/all"
-        ); // Replace with your API URL
+        const response = await fetch(apiUrl + "/api/v1/image/info/all"); // Replace with your API URL
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -45,7 +46,7 @@ const Gallery = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array ensures this runs only once after the component mounts
+  }, [config]); // Empty dependency array ensures this runs only once after the component mounts
 
   useEffect(() => {
     // Function to handle clicks outside the selected image
@@ -87,9 +88,7 @@ const Gallery = () => {
               <div key={index} className="col-6 col-sm-4 col-md-4 ps-1 pe-1">
                 <div className="square-image-container">
                   <img
-                    src={
-                      properties.bakendurl + "/api/v1/image/" + image.filename
-                    }
+                    src={apiUrl + "/api/v1/image/" + image.filename}
                     alt={image.description}
                     className="img-thumbnail"
                     onClick={(e) => {
@@ -110,11 +109,7 @@ const Gallery = () => {
               <div className="overlay">
                 <img
                   ref={imageRef}
-                  src={
-                    properties.bakendurl +
-                    "/api/v1/image/" +
-                    selectedImage.filename
-                  }
+                  src={apiUrl + "/api/v1/image/" + selectedImage.filename}
                   alt={selectedImage.description}
                   onClick={(e) => {
                     e.stopPropagation(); // Prevents the click event from propagating up to parent elements

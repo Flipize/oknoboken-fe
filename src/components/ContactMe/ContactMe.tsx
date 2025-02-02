@@ -1,13 +1,15 @@
 import axios from "axios";
-import "../../properties";
-import { properties } from "../../properties";
 import { useState } from "react";
+import useConfig from "../../useConfig";
 
 const ContactMe = () => {
   const [messageSent, setMessageSent] = useState(false); // To show a loading state
   //const [validInput, setValidInput] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
-  const apiUrl = properties.bakendurl + "/api/v1/message/submit";
+
+  const config = useConfig();
+  if (!config) return <p>Loading configuration...</p>;
+  const apiUrl = config.apiUrl + "/api/v1/message/submit";
 
   interface RequestData {
     name: string;
