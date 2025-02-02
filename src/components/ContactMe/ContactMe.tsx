@@ -1,11 +1,11 @@
-import React, { useState } from "react";
 import axios from "axios";
 import "../../properties";
 import { properties } from "../../properties";
+import { useState } from "react";
 
 const ContactMe = () => {
   const [messageSent, setMessageSent] = useState(false); // To show a loading state
-  const [validInput, setValidInput] = useState(false);
+  //const [validInput, setValidInput] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const apiUrl = properties.bakendurl + "/api/v1/message/submit";
 
@@ -71,7 +71,7 @@ const ContactMe = () => {
       console.error("Error sending POST request:", error);
       setMessage("Failed to send data.");
     }
-
+    message && console.log(message);
     setMessageSent(true);
   };
 

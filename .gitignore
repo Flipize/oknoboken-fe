@@ -23,5 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 
-# Sensitive information
-src/properties.tsx
