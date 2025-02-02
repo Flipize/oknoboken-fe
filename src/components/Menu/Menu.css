@@ -1,0 +1,16 @@
+.navbar {
+    background-color: #333;
+    color: white;
+  }
+  
+  .nav-item {
+    padding: 10px;
+    color: #fff;
+  }
+  
+  .nav-item:hover {
+    background-color: #c7c7c71f;
+  }
+.navbar .nav-link.active {
+  font-weight: bold;
+}
