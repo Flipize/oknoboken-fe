@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Gallery.css";
 import "../../properties";
 import { properties } from "../../properties";
