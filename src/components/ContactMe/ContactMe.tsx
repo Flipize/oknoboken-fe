@@ -5,7 +5,7 @@ import useConfig from "../../useConfig";
 const ContactMe = () => {
   const [messageSent, setMessageSent] = useState(false); // To show a loading state
   //const [validInput, setValidInput] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
+  const [content, setcontent] = useState<string | null>(null);
 
   const config = useConfig();
   if (!config) return <p>Loading configuration...</p>;
@@ -13,15 +13,15 @@ const ContactMe = () => {
 
   interface RequestData {
     name: string;
-    address: string;
-    message: string;
+    email: string;
+    content: string;
   }
 
   interface ResponseData {
     success: boolean;
-    message: string;
+    content: string;
     name: string;
-    address: string;
+    email: string;
   }
 
   const sendPostRequest = async (
@@ -35,8 +35,8 @@ const ContactMe = () => {
   const handleOnClickSend = async () => {
     const requestData: RequestData = {
       name: "",
-      address: "",
-      message: "",
+      email: "",
+      content: "",
     };
 
     let inputNameElement = document.getElementById(
@@ -49,31 +49,31 @@ const ContactMe = () => {
       "input-email"
     ) as HTMLInputElement;
     if (inputEmailElement) {
-      requestData.address = inputEmailElement.value;
+      requestData.email = inputEmailElement.value;
     }
-    let inputMessageElement = document.getElementById(
-      "input-message"
+    let inputcontentElement = document.getElementById(
+      "input-content"
     ) as HTMLInputElement;
-    if (inputMessageElement) {
-      requestData.message = inputMessageElement.value;
+    if (inputcontentElement) {
+      requestData.content = inputcontentElement.value;
     }
     console.log(
       "Name: " +
         requestData.name +
         ", Email: " +
-        requestData.address +
-        ", Message: " +
-        requestData.message
+        requestData.email +
+        ", content: " +
+        requestData.content
     );
 
     try {
       const response = await sendPostRequest(apiUrl, requestData);
-      setMessage(response.message);
+      setcontent(response.content);
     } catch (error) {
       console.error("Error sending POST request:", error);
-      setMessage("Failed to send data.");
+      setcontent("Failed to send data.");
     }
-    message && console.log(message);
+    content && console.log(content);
     setMessageSent(true);
   };
 
@@ -93,10 +93,10 @@ const ContactMe = () => {
                 <input type="email" className="form-control" id="input-email" />
               </div>
               <div className="form-group">
-                <label htmlFor="input-message">Meddelande</label>
+                <label htmlFor="input-content">Meddelande</label>
                 <textarea
                   className="form-control"
-                  id="input-message"
+                  id="input-content"
                   rows={4}
                 ></textarea>
               </div>
