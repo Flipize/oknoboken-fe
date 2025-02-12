@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import useConfig from "../../useConfig";
+import Subscribe from "../Subscribe/Subscribe";
+import "./ContactMe.css"
 
 const ContactMe = () => {
   const [messageSent, setMessageSent] = useState(false); // To show a loading state
@@ -78,29 +80,43 @@ const ContactMe = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       {!messageSent && (
-        <div className="container">
+        <div>
           <h1>Kontakta mig</h1>
-          <div className="form-container">
+          <div className="form-message-container">
             <form>
-              <div className="form-group">
-                <label htmlFor="input-name">Namn</label>
-                <input type="email" className="form-control" id="input-name" />
+              <div className="form-group input-container">
+                <label htmlFor="input-name">Namn:</label>
+                <div className="input-wrapper">
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="input-name"
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="input-email">Email</label>
-                <input type="email" className="form-control" id="input-email" />
+              <div className="form-group input-container">
+                <label htmlFor="input-email">Email:</label>
+                <div className="input-wrapper">
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="input-email"
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="input-content">Meddelande</label>
+              <div className="form-group input-container">
+                <label htmlFor="input-content">Meddelande:</label>
+                <div className="input-wrapper">
                 <textarea
                   className="form-control"
                   id="input-content"
                   rows={4}
                 ></textarea>
+                </div>
               </div>
-              <div className="">
+              <div className="submit-wrapper">
                 <button
                   type="submit"
                   className="btn btn-primary mb-3"
@@ -127,6 +143,9 @@ const ContactMe = () => {
           </div>
         </div>
       )}
+      <div>
+        <Subscribe />
+      </div>
     </div>
   );
 };

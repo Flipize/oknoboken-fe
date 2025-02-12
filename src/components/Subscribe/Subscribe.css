@@ -1,17 +1,16 @@
-.form-message-container {
+.form-subscription-container {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically if needed */
     width: 100%;
   }
   
-  .form-message-container form {
+  .form-subscription-container form {
     display: flex;
     flex-direction: column; /* Stack elements vertically */
     align-items: center; /* Center elements */
     max-width: 800px; /* Limit form width */
     width: 100%;
-    
   }
   
   .input-container {
@@ -19,13 +18,11 @@
     align-items: center;
     gap: 8px;
     width: 100%;
-    margin: 3px
   }
   
   .input-container label {
     white-space: nowrap; /* Prevents label from wrapping */
     font-weight: bold;
-    width: 100px;
   }
   
   .input-wrapper {
@@ -35,10 +32,6 @@
     flex: 1;
     width: 100%;
   }
-
-  .submit-wrapper {
-    align-self: end;
-  }
   
   /* Make input take full width */
   .input-wrapper input {
@@ -46,9 +39,8 @@
   }
   
   /* Button stays beside input by default */
-  .submit-wrapper button {
+  .input-wrapper button {
     white-space: nowrap;
-    align-self: flex-end;
     min-width: 120px;
   }
   
@@ -66,15 +58,9 @@
       gap: 8px;
       width: 100%;
     }
-    .submit-wrapper {
-        flex-direction: column;
-        align-items: stretch; /* Make input & button full width */
-        gap: 8px;
-        width: 100%;
-      }
   
     .input-wrapper input,
-    .submit-wrapper button {
+    .sumbit-wrapper button {
       width: 100%; /* Make input and button full-width */
     }
   }
