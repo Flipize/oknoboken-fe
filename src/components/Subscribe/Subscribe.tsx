@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useConfig from "../../useConfig";
 import axios from "axios";
 import "./Subscribe.css";
