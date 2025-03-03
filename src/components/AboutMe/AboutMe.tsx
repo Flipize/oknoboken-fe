@@ -1,7 +1,9 @@
 const AboutMe = () => {
   return (
     <div className="container">
-      <h1>Om Mig</h1>
+      <div className="title">
+            <h1>Om mig</h1>
+          </div>
     </div>
   );
 };

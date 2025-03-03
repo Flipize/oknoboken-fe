@@ -75,14 +75,26 @@ const Gallery = () => {
   }, [selectedImage]);
 
   //if (loading) return <div>Loading...</div>; // Loading state
-  if (error) return <div>Error: {error.message}</div>; // Error state
-  if (loading) return <div>Loading...</div>; // Loading state
+  //if (error) return <div>Error: {error.message}</div>; // Error state
+  //if (loading) return <div>Loading...</div>; // Loading state
 
   return (
     <div>
       <div>
         <div className="container">
-          <h1>Bilder</h1>
+          <div className="title">
+            <h1>Galleri</h1>
+          </div>
+          {loading && (
+            <div>
+              <p>Loading...</p>
+            </div>
+          )}
+          {error && (
+            <div>
+              {error.message}
+            </div>
+          )}
           <div className="row g-2">
             {data.map((image, index) => (
               <div key={index} className="col-6 col-sm-4 col-md-4 ps-1 pe-1">

@@ -1,7 +1,9 @@
 const Main = () => {
   return (
     <div className="container">
-      <h1>Förstasidan</h1>
+      <div className="title">
+        <h1>Oknöboken</h1>
+      </div>
     </div>
   );
 };

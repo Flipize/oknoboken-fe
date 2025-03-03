@@ -1,3 +1,36 @@
+@font-face {
+    font-family: 'LogoFont'; /* Name your font family */
+    src: url('src/assets/AnandaBlackPersonalUseRegular-rg9Rx.ttf'); /* Locate the .ttf file within your directory*/
+  }
+
+@font-face {
+    font-family: 'LogoFont2'; /* Name your font family */
+    src: url('src/assets/Queensides-3z7Ey.ttf'); /* Locate the .ttf file within your directory*/
+  }
+
+  @font-face {
+    font-family: 'LogoFont3'; /* Name your font family */
+    src: url('src/assets/CclassicPersonalUse-gxJD1.ttf'); /* Locate the .ttf file within your directory*/
+  }
+
 .banner-container {
     width: 100vw;
+    position: relative;
+    text-align: center;
  }
+ .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.logo {
+    font-family: 'LogoFont2';
+    font-size: 7vw;
+    color: rgb(177, 252, 252);
+}
+
+.von {
+    color: rgb(208, 255, 255);
+}

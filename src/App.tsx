@@ -5,6 +5,7 @@ import AboutMe from "./components/AboutMe/AboutMe";
 import Home from "./components/Home/Home";
 import ContactMe from "./components/ContactMe/ContactMe";
 import Gallery from "./components/Gallery/Gallery";
+import "./App.css";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="about-me" element={<AboutMe />} />
+        <Route path="about" element={<AboutMe />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="contact" element={<ContactMe />} />
       </Routes>

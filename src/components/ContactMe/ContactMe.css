@@ -51,6 +51,8 @@
     align-self: flex-end;
     min-width: 120px;
   }
+
+
   
   /* Responsive: Stack button below input on smaller screens */
   @media (max-width: 500px) {

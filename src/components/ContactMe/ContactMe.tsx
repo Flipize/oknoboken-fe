@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import useConfig from "../../useConfig";
 import Subscribe from "../Subscribe/Subscribe";
-import "./ContactMe.css"
+import "./ContactMe.css";
 
 const ContactMe = () => {
   const [messageSent, setMessageSent] = useState(false); // To show a loading state
@@ -83,7 +83,9 @@ const ContactMe = () => {
     <div className="container">
       {!messageSent && (
         <div>
-          <h1>Kontakta mig</h1>
+          <div className="title">
+            <h1>Kontakta mig</h1>
+          </div>
           <div className="form-message-container">
             <form>
               <div className="form-group input-container">
@@ -109,11 +111,11 @@ const ContactMe = () => {
               <div className="form-group input-container">
                 <label htmlFor="input-content">Meddelande:</label>
                 <div className="input-wrapper">
-                <textarea
-                  className="form-control"
-                  id="input-content"
-                  rows={4}
-                ></textarea>
+                  <textarea
+                    className="form-control"
+                    id="input-content"
+                    rows={4}
+                  ></textarea>
                 </div>
               </div>
               <div className="submit-wrapper">

@@ -12,7 +12,7 @@ const Menu = () => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/about-me" className="nav-link">
+            <NavLink to="/about" className="nav-link">
               Om Mig
             </NavLink>
           </li>
