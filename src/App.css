@@ -1,4 +1,25 @@
+@font-face {
+    font-family: 'LogoFont'; /* Name your font family */
+    src: url('src/assets/AnandaBlackPersonalUseRegular-rg9Rx.ttf'); /* Locate the .ttf file within your directory*/
+  }
+
+@font-face {
+    font-family: 'LogoFont2'; /* Name your font family */
+    src: url('src/assets/Queensides-3z7Ey.ttf'); /* Locate the .ttf file within your directory*/
+  }
+
+@font-face {
+    font-family: 'LogoFont3'; /* Name your font family */
+    src: url('src/assets/CclassicPersonalUse-gxJD1.ttf'); /* Locate the .ttf file within your directory*/
+  }
+
+@font-face {
+    font-family: 'TitleFont'; /* Name your font family */
+    src: url('src/assets/QueensidesMedium-x30zV.ttf'); /* Locate the .ttf file within your directory*/
+  }
+
 .title {
     text-align: center;
     padding: 10px;
+    font-family: 'TitleFont';
   }
