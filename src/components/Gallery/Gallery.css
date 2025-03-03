@@ -17,11 +17,6 @@
   object-position: center;  /* Center the image inside the square */
 }
 
-.overlay {
-   /* or absolute, relative depending on your needs */
-  /*background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
-}
-
 .full-image-container {
     position: fixed;
     top: 0;
