@@ -38,7 +38,7 @@
 .overlay img {
   max-height: 80vh;
   max-width: 100%; /* Ensures it doesn't exceed container width */
-  min-width: 50vh;
+  min-width: 20vw;
   height: auto; /* Maintain aspect ratio */
   border: 1px solid;
 }
