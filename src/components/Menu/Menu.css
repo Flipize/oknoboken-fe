@@ -1,16 +1,49 @@
 .navbar {
-    background-color: #333;
-    color: white;
-  }
-  
-  .nav-item {
-    padding: 10px;
-    color: #fff;
+  background-color: #000117;
   }
   
   .nav-item:hover {
-    background-color: #c7c7c71f;
+    color: #a3e2ff;
   }
+
+  .nav-item .nav-link:hover {
+    color: #a3e2ff;
+    Transform: scale(1.05); 
+  }
+
 .navbar .nav-link.active {
   font-weight: bold;
+  color: #a3e2ff;
+  Transform: scale(1.05);
 }
+
+.nav-link {
+  color: #a3e2ff;
+}
+
+.navbar-nav {
+  margin: auto;
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.small-screen-menu {
+  display: none;
+}
+
+  /* Responsive: Stack button below input on smaller screens */
+  @media (max-width: 500px) {
+    .navbar-nav {
+      display: none;
+    }
+
+    .small-screen-menu {
+      color: #a3e2ff;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+

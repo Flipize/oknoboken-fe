@@ -12,6 +12,11 @@
     font-family: 'LogoFont3'; /* Name your font family */
     src: url('src/assets/CclassicPersonalUse-gxJD1.ttf'); /* Locate the .ttf file within your directory*/
   }
+  
+  @font-face {
+    font-family: 'LogoFont4'; /* Name your font family */
+    src: url('src/assets/MeaCulpa-Regular.ttf'); /* Locate the .ttf file within your directory*/
+  }
 
 .banner-container {
     width: 100vw;
@@ -26,9 +31,10 @@
   }
 
 .logo {
-    font-family: 'LogoFont2';
-    font-size: 7vw;
+    font-family: 'LogoFont4';
+    font-size: 9vw;
     color: rgb(177, 252, 252);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.664);
 }
 
 .von {
