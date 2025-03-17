@@ -6,6 +6,7 @@ import Home from "./components/Home/Home";
 import ContactMe from "./components/ContactMe/ContactMe";
 import Gallery from "./components/Gallery/Gallery";
 import "./App.css";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="about" element={<AboutMe />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="contact" element={<ContactMe />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

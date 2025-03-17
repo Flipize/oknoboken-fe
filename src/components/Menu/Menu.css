@@ -31,6 +31,9 @@
 .small-screen-menu {
   display: none;
 }
+.dropdown-content {
+  display: none;
+}
 
   /* Responsive: Stack button below input on smaller screens */
   @media (max-width: 500px) {
@@ -43,6 +46,21 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
+    }
+
+    .dropdown-content {
+      display: none;
+    }
+    
+    /* Show the dropdown content when 'show' class is added */
+    .dropdown-content.show {
+      display: block;
+    }
+
+    .hamburger-button {
+      background-color: transparent;
+      color: #a3e2ff;
+      border: none;
     }
   }
 
