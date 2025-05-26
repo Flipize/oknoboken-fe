@@ -3,6 +3,7 @@ import { useState } from "react";
 import useConfig from "../../useConfig";
 import Subscribe from "../Subscribe/Subscribe";
 import "./ContactMe.css";
+import Card from "../Card";
 
 const ContactMe = () => {
   const [messageSent, setMessageSent] = useState(false); // To show a loading state
@@ -41,19 +42,19 @@ const ContactMe = () => {
       content: "",
     };
 
-    let inputNameElement = document.getElementById(
+    const inputNameElement = document.getElementById(
       "input-name"
     ) as HTMLInputElement;
     if (inputNameElement) {
       requestData.name = inputNameElement.value;
     }
-    let inputEmailElement = document.getElementById(
+    const inputEmailElement = document.getElementById(
       "input-email"
     ) as HTMLInputElement;
     if (inputEmailElement) {
       requestData.email = inputEmailElement.value;
     }
-    let inputcontentElement = document.getElementById(
+    const inputcontentElement = document.getElementById(
       "input-content"
     ) as HTMLInputElement;
     if (inputcontentElement) {
@@ -80,74 +81,75 @@ const ContactMe = () => {
   };
 
   return (
-    <div className="container">
-      {!messageSent && (
-        <div>
-          <div className="title">
-            <h1>Kontakta mig</h1>
-          </div>
-          <div className="form-message-container">
-            <form>
-              <div className="form-group input-container">
-                <label htmlFor="input-name">Namn:</label>
-                <div className="input-wrapper">
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="input-name"
-                  />
-                </div>
+    <div className="h-screen">
+      <Card title="Kontakta mig">
+        <div className="container">
+          {!messageSent && (
+            <div>
+              <div className="form-message-container">
+                <form>
+                  <div className="form-group input-container">
+                    <label htmlFor="input-name">Namn:</label>
+                    <div className="input-wrapper">
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="input-name"
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group input-container">
+                    <label htmlFor="input-email">Email:</label>
+                    <div className="input-wrapper">
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="input-email"
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group input-container">
+                    <label htmlFor="input-content">Meddelande:</label>
+                    <div className="input-wrapper">
+                      <textarea
+                        className="form-control"
+                        id="input-content"
+                        rows={4}
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className="submit-wrapper">
+                    <button
+                      type="submit"
+                      className="btn btn-primary mb-3"
+                      onClick={() => handleOnClickSend()}
+                    >
+                      Skicka
+                    </button>
+                  </div>
+                </form>
               </div>
-              <div className="form-group input-container">
-                <label htmlFor="input-email">Email:</label>
-                <div className="input-wrapper">
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="input-email"
-                  />
-                </div>
-              </div>
-              <div className="form-group input-container">
-                <label htmlFor="input-content">Meddelande:</label>
-                <div className="input-wrapper">
-                  <textarea
-                    className="form-control"
-                    id="input-content"
-                    rows={4}
-                  ></textarea>
-                </div>
-              </div>
-              <div className="submit-wrapper">
+            </div>
+          )}
+          {messageSent && (
+            <div className="container">
+              <div>Tack för ditt meddelande!</div>
+              <div>
                 <button
-                  type="submit"
+                  type="button"
                   className="btn btn-primary mb-3"
-                  onClick={() => handleOnClickSend()}
+                  onClick={() => setMessageSent(false)}
                 >
-                  Skicka
+                  Nytt meddelande
                 </button>
               </div>
-            </form>
-          </div>
-        </div>
-      )}
-      {messageSent && (
-        <div className="container">
-          <div>Tack för ditt meddelande!</div>
+            </div>
+          )}
           <div>
-            <button
-              type="button"
-              className="btn btn-primary mb-3"
-              onClick={() => setMessageSent(false)}
-            >
-              Nytt meddelande
-            </button>
+            <Subscribe />
           </div>
         </div>
-      )}
-      <div>
-        <Subscribe />
-      </div>
+      </Card>
     </div>
   );
 };

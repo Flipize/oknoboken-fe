@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./Gallery.css";
 import useConfig from "../../useConfig";
+import Card from "../Card";
 
 const Gallery = () => {
   interface Image {
@@ -79,62 +80,62 @@ const Gallery = () => {
   //if (loading) return <div>Loading...</div>; // Loading state
 
   return (
-    <div>
-      <div>
-        <div className="container">
-          <div className="title">
-            <h1>Galleri</h1>
-          </div>
-          {loading && (
-            <div>
-              <p>Loading...</p>
-            </div>
-          )}
-          {error && (
-            <div>
-              {error.message}
-            </div>
-          )}
-          <div className="row g-2">
-            {data.map((image, index) => (
-              <div key={index} className="col-6 col-sm-4 col-md-4 ps-1 pe-1">
-                <div className="square-image-container">
-                  <img
-                    src={apiUrl + "/api/v1/image/" + image.filename}
-                    alt={image.description}
-                    className="img-thumbnail"
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevents the click event from propagating up to parent elements
-                      handleImageClick(image); // Handles the image click
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      {selectedImage && (
-        <div className="full-image-container">
-          <div className="image-wrapper">
+    <div className="h-screen">
+      <Card title="Galleri">
+        <div>
+          <div>
             <div className="container">
-              <div className="overlay">
-                <img
-                  ref={imageRef}
-                  src={apiUrl + "/api/v1/image/" + selectedImage.filename}
-                  alt={selectedImage.description}
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevents the click event from propagating up to parent elements
-                  }}
-                />
-                <div ref={textRef} className="text-container">
-                  <p>{selectedImage.description}</p>
+              {loading && (
+                <div>
+                  <p>Loading...</p>
                 </div>
+              )}
+              {error && <div>{error.message}</div>}
+              <div className="row g-2">
+                {data.map((image, index) => (
+                  <div
+                    key={index}
+                    className="col-6 col-sm-4 col-md-4 ps-1 pe-1"
+                  >
+                    <div className="square-image-container">
+                      <img
+                        src={apiUrl + "/api/v1/image/" + image.filename}
+                        alt={image.description}
+                        className="img-thumbnail"
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevents the click event from propagating up to parent elements
+                          handleImageClick(image); // Handles the image click
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
+          {selectedImage && (
+            <div className="full-image-container">
+              <div className="image-wrapper">
+                <div className="container">
+                  <div className="overlay">
+                    <img
+                      ref={imageRef}
+                      src={apiUrl + "/api/v1/image/" + selectedImage.filename}
+                      alt={selectedImage.description}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevents the click event from propagating up to parent elements
+                      }}
+                    />
+                    <div ref={textRef} className="text-container">
+                      <p>{selectedImage.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </Card>
     </div>
   );
 };

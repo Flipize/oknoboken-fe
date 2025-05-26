@@ -1,9 +1,13 @@
+import Card from "../Card";
+
 const AboutMe = () => {
   return (
-    <div className="container">
-      <div className="title">
-            <h1>Om mig</h1>
-          </div>
+    <div className="h-screen">
+      <Card title="Om mig">
+        <p>
+          Här kommer texten om mig.
+        </p>
+      </Card>
     </div>
   );
 };
