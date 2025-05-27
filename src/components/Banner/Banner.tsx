@@ -39,12 +39,12 @@ const Banner = () => {
 
       {/* Hero content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-        <h1 className="playfair-display-600 text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+        <h1 className="hero-text-font text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
           Välkommen till Oknö – ostkustens pärla!
         </h1>
         <button
           onClick={scrollToOknoboken}
-          className="button-font px-6 py-2 bg-white text-black font-semibold rounded-lg hover:scale-105 hover:text-[#3b4d2c] transition"
+          className="regular-text-font px-6 py-2 bg-white text-black font-semibold rounded-lg hover:scale-105 hover:text-[#3b4d2c] transition"
         >
           Oknöboken
         </button>

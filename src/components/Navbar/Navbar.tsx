@@ -3,6 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { ROUTES } from "./../routes";
 
+const baseButtonClasses =
+  "regular-text-font px-4 py-2 rounded-lg text-sm md:text-base font-medium transition duration-200 hover:bg-[#e7f3d4] hover:text-[#3b4d2c]";
+const mobileButtonClasses =
+  "regular-text-font block w-full text-left px-4 py-2 rounded";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -22,6 +27,12 @@ const Navbar = () => {
 
   const isActive = (path: string) =>
     location.pathname === path ? "bg-[#a1c563] text-white" : "text-gray-800";
+
+  const getButtonClasses = (path: string) =>
+    `${baseButtonClasses} ${isActive(path)}`;
+
+  const getMobileButtonClasses = (path: string) =>
+    `${mobileButtonClasses} ${isActive(path)}`;
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -44,47 +55,36 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50">
       {/* Desktop Navbar */}
-      <div className="hidden md:flex justify-center space-x-6 bg-white/90 backdrop-blur-md shadow-md px-4 py-3">
+      <div className="hidden md:flex justify-center gap-6 bg-white/90 backdrop-blur-md shadow-md px-4 py-3">
         <button
           onClick={scrollToOknoboken}
-          className={`
-          button-font mx-4 px-4 py-2 rounded-lg text-sm md:text-base font-medium transition duration-200
-          ${isActive(ROUTES.HOME)}
-        `}
+          className={getButtonClasses(ROUTES.HOME)}
         >
           Oknöboken
         </button>
         <button
           onClick={() => navigate(ROUTES.ABOUT)}
-          className={`button-font px-4 py-2 rounded-lg text-sm md:text-base font-medium transition duration-200 ${isActive(
-            ROUTES.ABOUT
-          )} hover:bg-[#e7f3d4] hover:text-[#3b4d2c]`}
+          className={getButtonClasses(ROUTES.ABOUT)}
         >
           Om mig
         </button>
         <button
           onClick={() => navigate(ROUTES.GALLERY)}
-          className={`button-font px-4 py-2 rounded-lg text-sm md:text-base font-medium transition duration-200 ${isActive(
-            ROUTES.GALLERY
-          )} hover:bg-[#e7f3d4] hover:text-[#3b4d2c]`}
+          className={getButtonClasses(ROUTES.GALLERY)}
         >
           Galleri
         </button>
         <button
           onClick={() => navigate(ROUTES.CONTACT)}
-          className={`button-font px-4 py-2 rounded-lg text-sm md:text-base font-medium transition duration-200 ${isActive(
-            ROUTES.CONTACT
-          )} hover:bg-[#e7f3d4] hover:text-[#3b4d2c]`}
+          className={getButtonClasses(ROUTES.CONTACT)}
         >
           Kontakt
         </button>
         <button
           onClick={() => navigate(ROUTES.ORDER)}
-          className={`button-font px-4 py-2 rounded-lg text-sm md:text-base font-medium transition duration-200 ${isActive(
-            ROUTES.ORDER
-          )} hover:bg-[#e7f3d4] hover:text-[#3b4d2c]`}
+          className={getButtonClasses(ROUTES.ORDER)}
         >
-          Beställa Oknöboken
+          Beställa
         </button>
       </div>
 
@@ -92,7 +92,7 @@ const Navbar = () => {
       <div className="md:hidden fixed top-4 right-4 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="button-font text-white p-2 bg-black/40 rounded-full hover:bg-black/60 transition"
+          className="regular-text-font text-white p-2 bg-black/40 rounded-full hover:bg-black/60 transition"
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -107,9 +107,7 @@ const Navbar = () => {
         >
           <button
             onClick={scrollToOknoboken}
-            className={`button-font block w-full text-left px-4 py-2 rounded ${isActive(
-              ROUTES.HOME
-            )}`}
+            className={getMobileButtonClasses(ROUTES.HOME)}
           >
             Oknöboken
           </button>
@@ -118,9 +116,7 @@ const Navbar = () => {
               navigate(ROUTES.ABOUT);
               setIsOpen(false);
             }}
-            className={`button-font block w-full text-left px-4 py-2 rounded ${isActive(
-              ROUTES.ABOUT
-            )}`}
+            className={getMobileButtonClasses(ROUTES.ABOUT)}
           >
             Om mig
           </button>
@@ -129,9 +125,7 @@ const Navbar = () => {
               navigate(ROUTES.GALLERY);
               setIsOpen(false);
             }}
-            className={`button-font block w-full text-left px-4 py-2 rounded ${isActive(
-              ROUTES.GALLERY
-            )}`}
+            className={getMobileButtonClasses(ROUTES.GALLERY)}
           >
             Galleri
           </button>
@@ -140,9 +134,7 @@ const Navbar = () => {
               navigate(ROUTES.CONTACT);
               setIsOpen(false);
             }}
-            className={`button-font block w-full text-left px-4 py-2 rounded ${isActive(
-              ROUTES.CONTACT
-            )}`}
+            className={getMobileButtonClasses(ROUTES.CONTACT)}
           >
             Kontakta mig
           </button>
@@ -151,9 +143,7 @@ const Navbar = () => {
               navigate(ROUTES.ORDER);
               setIsOpen(false);
             }}
-            className={`button-font block w-full text-left px-4 py-2 rounded ${isActive(
-              ROUTES.ORDER
-            )}`}
+            className={getMobileButtonClasses(ROUTES.ORDER)}
           >
             Beställa Oknöboken
           </button>

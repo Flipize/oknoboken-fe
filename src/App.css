@@ -2,11 +2,6 @@
 
 @import "tailwindcss";
 
-.title {
-  text-align: center;
-  padding: 10px;
-}
-
 a {
   text-decoration: none;
   color: inherit;
@@ -16,20 +11,6 @@ html {
   scroll-behavior: smooth;
 }
 
-.playfair-display-400 {
-  font-family: "Playfair Display", serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.playfair-display-600 {
-  font-family: "Playfair Display", serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-}
-
 p {
   font-family: "Lora", serif;
   font-optical-sizing: auto;
@@ -37,10 +18,23 @@ p {
   font-style: normal;
 }
 
-.button-font {
-  font-family: "Lora";
+.h1-text-font {
+  font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
+.hero-text-font {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.regular-text-font {
+  font-family: "Lora";
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
