@@ -1,4 +1,4 @@
-import Menu from "./components/Menu/Menu";
+import Menu from "./components/Navbar/Navbar";
 import Banner from "./components/Banner/Banner";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AboutMe from "./components/AboutMe/AboutMe";
