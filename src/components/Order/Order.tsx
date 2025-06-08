@@ -1,13 +1,12 @@
-import axios from "axios";
-import { useState } from "react";
-import useConfig from "../../useConfig";
-import "./ContactMe.css";
-import Card from "../Card";
+import React, { useState } from 'react'
+import Card from '../Card';
+import axios from 'axios';
+import useConfig from '../../useConfig';
 
-const ContactMe = () => {
-  const [messageSent, setMessageSent] = useState(false); // To show a loading state
+const Order = () => {
+  const [orderSent, setOrderSent] = useState(false); // To show a loading state
   //const [validInput, setValidInput] = useState(false);
-  const [content, setcontent] = useState<string | null>(null);
+  const [responseMessage, setResponseMessage] = useState<string | null>(null);
 
   const config = useConfig();
   if (!config) return <p>Loading configuration...</p>;
@@ -16,14 +15,16 @@ const ContactMe = () => {
   interface RequestData {
     name: string;
     email: string;
-    content: string;
+    message: string;
+    delivery: string;
+    adress: string;
+    postal_code: string;
+    phone_number: string;
   }
 
   interface ResponseData {
     success: boolean;
-    content: string;
-    name: string;
-    email: string;
+    message: string;
   }
 
   const sendPostRequest = async (
@@ -38,7 +39,11 @@ const ContactMe = () => {
     const requestData: RequestData = {
       name: "",
       email: "",
-      content: "",
+      delivery: "",
+      message: "",
+      adress: "",
+      postal_code: "",
+      phone_number: "",
     };
 
     const inputNameElement = document.getElementById(
@@ -53,37 +58,70 @@ const ContactMe = () => {
     if (inputEmailElement) {
       requestData.email = inputEmailElement.value;
     }
-    const inputcontentElement = document.getElementById(
-      "input-content"
+    const inputMessageElement = document.getElementById(
+      "input-message"
     ) as HTMLInputElement;
-    if (inputcontentElement) {
-      requestData.content = inputcontentElement.value;
+    if (inputMessageElement) {
+      requestData.message = inputMessageElement.value;
+    }
+    const inputDeliveryElement = document.getElementById(
+      "input-delivery"
+    ) as HTMLInputElement;
+    if (inputDeliveryElement) {
+      requestData.delivery = inputDeliveryElement.value;
+    }
+    const inputAdressElement = document.getElementById(
+      "input-adress"
+    ) as HTMLInputElement;
+    if (inputAdressElement) {
+      requestData.adress = inputAdressElement.value;
+    }
+    const inputPostalCodeElement = document.getElementById(
+      "input-postalcode"
+    ) as HTMLInputElement;
+    if (inputPostalCodeElement) {
+      requestData.postal_code = inputPostalCodeElement.value;
+    }
+    const inputPhoneNumberElement = document.getElementById(
+      "input-phonenumber"
+    ) as HTMLInputElement;
+    if (inputPhoneNumberElement) {
+      requestData.phone_number = inputPostalCodeElement.value;
     }
     console.log(
       "Name: " +
         requestData.name +
         ", Email: " +
         requestData.email +
-        ", content: " +
-        requestData.content
+        ", Delivery: " +
+        requestData.delivery +
+        ", Message: " +
+        requestData.message +
+        ", Adress: " +
+        requestData.adress +
+        ", Postal Code: " +
+        requestData.postal_code +
+        ", Phone Number: " +
+        requestData.phone_number
     );
 
     try {
       const response = await sendPostRequest(apiUrl, requestData);
-      setcontent(response.content);
+      setResponseMessage(response.message);
     } catch (error) {
       console.error("Error sending POST request:", error);
-      setcontent("Failed to send data.");
+      setResponseMessage("Failed to submit order.");
     }
-    content && console.log(content);
-    setMessageSent(true);
+    responseMessage && console.log(responseMessage);
+    setOrderSent(true);
   };
 
   return (
     <div className="h-screen">
-      <Card title="Kontakta mig">
+      <Card title="Köp Oknöboken">
         <div className="container">
-          {!messageSent && (
+          {!orderSent
+     && (
             <div>
               <div className="form-message-container">
                 <form>
@@ -91,7 +129,7 @@ const ContactMe = () => {
                     <label htmlFor="input-name">Namn:</label>
                     <div className="input-wrapper">
                       <input
-                        type="email"
+                        type="text"
                         className="form-control"
                         id="input-name"
                       />
@@ -108,11 +146,21 @@ const ContactMe = () => {
                     </div>
                   </div>
                   <div className="form-group input-container">
-                    <label htmlFor="input-content">Meddelande:</label>
+                    <label htmlFor="input-delivery">Leveransalternativ:</label>
+                    <div className="input-wrapper">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="input-delivery"
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group input-container">
+                    <label htmlFor="input-message">Meddelande:</label>
                     <div className="input-wrapper">
                       <textarea
                         className="form-control"
-                        id="input-content"
+                        id="input-message"
                         rows={4}
                       ></textarea>
                     </div>
@@ -130,16 +178,17 @@ const ContactMe = () => {
               </div>
             </div>
           )}
-          {messageSent && (
+          {orderSent
+     && (
             <div className="container">
-              <div>Tack för ditt meddelande!</div>
+              <div>Tack för din beställning!</div>
               <div>
                 <button
                   type="button"
                   className="btn btn-primary mb-3"
-                  onClick={() => setMessageSent(false)}
+                  onClick={() => setOrderSent(false)}
                 >
-                  Nytt meddelande
+                  Gå tillbaka
                 </button>
               </div>
             </div>
@@ -150,4 +199,4 @@ const ContactMe = () => {
   );
 };
 
-export default ContactMe;
+export default Order;
