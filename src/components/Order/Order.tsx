@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import Card from '../Card';
-import axios from 'axios';
-import useConfig from '../../useConfig';
+import React, { useState } from "react";
+import Card from "../Card";
+import axios from "axios";
+import useConfig from "../../useConfig";
 
 const Order = () => {
   const [orderSent, setOrderSent] = useState(false); // To show a loading state
   //const [validInput, setValidInput] = useState(false);
   const [responseMessage, setResponseMessage] = useState<string | null>(null);
+  const [selectedDelivery, setSelectedDelivery] = useState<string>("no-send");
 
   const config = useConfig();
   if (!config) return <p>Loading configuration...</p>;
@@ -120,8 +121,7 @@ const Order = () => {
     <div className="h-screen">
       <Card title="Köp Oknöboken">
         <div className="container">
-          {!orderSent
-     && (
+          {!orderSent && (
             <div>
               <div className="form-message-container">
                 <form>
@@ -145,16 +145,75 @@ const Order = () => {
                       />
                     </div>
                   </div>
-                  <div className="form-group input-container">
-                    <label htmlFor="input-delivery">Leveransalternativ:</label>
-                    <div className="input-wrapper">
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="input-delivery"
-                      />
+                  <div className="form-group input-container flex items-center">
+                    <label htmlFor="input-delivery">
+                      Leveransalternativ:
+                    </label>
+                    <div id="input-delivery" className="w-3/4 flex justify-center gap-4">
+                      <label>
+                        <input
+                          type="radio"
+                          name="delivery"
+                          value="send"
+                          checked={selectedDelivery === "send"}
+                          onChange={(e) => setSelectedDelivery(e.target.value)}
+                        />
+                        Skicka
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="delivery"
+                          value="no-send"
+                          checked={selectedDelivery === "no-send"}
+                          onChange={(e) => setSelectedDelivery(e.target.value)}
+                        />
+                        Hämta själv
+                      </label>
                     </div>
                   </div>
+                  {selectedDelivery === "send" && (
+                    <>
+                      <div className="form-group input-container">
+                        <label htmlFor="input-adress">Leveransaddress:</label>
+                        <div className="input-wrapper">
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="input-adress"
+                          />
+                        </div>
+                      </div>
+                      <div className="form-group input-container">
+                        <label htmlFor="input-postalcode">Postkod:</label>
+                        <div className="input-wrapper">
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="input-postalcode"
+                          />
+                        </div>
+                      </div>
+                      <div className="form-group input-container">
+                        <label htmlFor="input-postalcode">Postort:</label>
+                        <div className="input-wrapper">
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="input-city"
+                          />
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  {selectedDelivery === "no-send" && (
+                    <div>
+                      <p>
+                        Boken kan hämtas på Lillövägen 36 när du har fått
+                        bekräftelse via email
+                      </p>
+                    </div>
+                  )}
                   <div className="form-group input-container">
                     <label htmlFor="input-message">Meddelande:</label>
                     <div className="input-wrapper">
@@ -178,8 +237,7 @@ const Order = () => {
               </div>
             </div>
           )}
-          {orderSent
-     && (
+          {orderSent && (
             <div className="container">
               <div>Tack för din beställning!</div>
               <div>
