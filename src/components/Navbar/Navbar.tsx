@@ -63,10 +63,10 @@ const Navbar = () => {
           Oknöboken
         </button>
         <button
-          onClick={() => navigate(ROUTES.GALLERY)}
-          className={getButtonClasses(ROUTES.GALLERY)}
+          onClick={() => navigate(ROUTES.ORDER)}
+          className={getButtonClasses(ROUTES.ORDER)}
         >
-          Galleri
+          Köp
         </button>
         <button
           onClick={() => navigate(ROUTES.ABOUT)}
@@ -75,16 +75,16 @@ const Navbar = () => {
           Om mig
         </button>
         <button
+          onClick={() => navigate(ROUTES.GALLERY)}
+          className={getButtonClasses(ROUTES.GALLERY)}
+        >
+          Galleri
+        </button>
+        <button
           onClick={() => navigate(ROUTES.CONTACT)}
           className={getButtonClasses(ROUTES.CONTACT)}
         >
           Kontakt
-        </button>
-        <button
-          onClick={() => navigate(ROUTES.ORDER)}
-          className={getButtonClasses(ROUTES.ORDER)}
-        >
-          Köp
         </button>
       </div>
 
@@ -117,6 +117,15 @@ const Navbar = () => {
           </button>
           <button
             onClick={() => {
+              navigate(ROUTES.ORDER);
+              setIsOpen(false);
+            }}
+            className={getMobileButtonClasses(ROUTES.ORDER)}
+          >
+            Köp
+          </button>
+          <button
+            onClick={() => {
               navigate(ROUTES.ABOUT);
               setIsOpen(false);
             }}
@@ -140,16 +149,7 @@ const Navbar = () => {
             }}
             className={getMobileButtonClasses(ROUTES.CONTACT)}
           >
-            Kontakta mig
-          </button>
-          <button
-            onClick={() => {
-              navigate(ROUTES.ORDER);
-              setIsOpen(false);
-            }}
-            className={getMobileButtonClasses(ROUTES.ORDER)}
-          >
-            Köp
+            Kontakt
           </button>
         </div>
       )}

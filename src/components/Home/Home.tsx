@@ -20,11 +20,13 @@ const Main = () => {
     <div data-scroll-target="oknoboken" className="scroll-mt-20">
       <Card title="Oknöboken">
         <div>
-          <img
-            src={Boken}
-            alt="Oknoboken"
-            className="w-60 mb-4 md:float-right md:ml-6 mx-auto md:mx-0 block rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-gray-200 transform rotate-[0.3deg] hover:scale-105 transition duration-300"
-          />
+          <div className="flex justify-center md:block">
+            <img
+              src={Boken}
+              alt="Oknoboken"
+              className="w-60 max-w-full mb-3 md:float-right md:mr-6 shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-gray-200 transform rotate-[0.3deg] hover:scale-105 transition duration-300"
+            />
+          </div>
           <Paragraph>
             Min bok om Oknö är naturligtvis en hyllning till denna underbara
             plats men jag vill också genom boken ge fler möjlighet att få
