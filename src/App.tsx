@@ -14,6 +14,7 @@ import "./App.css";
 import NotFound from "./components/NotFound/NotFound";
 import Order from "./components/Order/Order";
 import { useEffect } from "react";
+import Footer from "./components/Footer/Footer";
 
 const ScrollDownToComponent = () => {
   const { pathname } = useLocation();
@@ -35,18 +36,23 @@ const ScrollDownToComponent = () => {
 function App() {
   return (
     <Router>
-      <Banner />
-      <div id="banner-end" />
-      <Menu />
-      <ScrollDownToComponent />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="gallery" element={<Gallery />} />
-        <Route path="about" element={<AboutMe />} />
-        <Route path="contact" element={<ContactMe />} />
-        <Route path="order" element={<Order />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <div className="flex flex-col min-h-screen">
+        <Banner />
+        <div id="banner-end" />
+        <Menu />
+        <ScrollDownToComponent />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="gallery" element={<Gallery />} />
+            <Route path="about" element={<AboutMe />} />
+            <Route path="contact" element={<ContactMe />} />
+            <Route path="order" element={<Order />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }

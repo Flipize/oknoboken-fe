@@ -4,7 +4,7 @@ import Lizette from "../../assets/Lizette.png";
 
 const AboutMe = () => {
   return (
-    <div className="h-screen">
+    <div>
       <Card title="Om mig">
         <div className="flex justify-center md:block">
           <img
