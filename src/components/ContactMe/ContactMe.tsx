@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import useConfig from "../../useConfig";
-import "./ContactMe.css";
 import Card from "../Card";
 
 const ContactMe = () => {

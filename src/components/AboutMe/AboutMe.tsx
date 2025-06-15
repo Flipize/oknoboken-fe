@@ -85,7 +85,7 @@ const AboutMe = () => {
           <div className="flex justify-center md:justify-end">
             <img
               src={Lizette}
-              alt="Jag"
+              alt="En bild på mig, när jag precis hade fått hem böckerna i juni 2025"
               className="max-h-200 shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-gray-200"
             />
           </div>

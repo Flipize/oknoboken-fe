@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "../Card";
 import axios from "axios";
 import useConfig from "../../useConfig";
+import swish from "../../assets/swish.png";
 
 const Order = () => {
   const [orderSent, setOrderSent] = useState(false); // To show a loading state
@@ -121,50 +122,100 @@ const Order = () => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="max-w-600 mx-auto">
       <Card title="Köp Oknöboken">
-        <div className="container">
+        <div className="">
           {!orderSent && (
             <div>
-              <div className="form-message-container">
-                <form>
-                  <div className="form-group input-container">
-                    <label htmlFor="input-name">Namn:</label>
-                    <div className="input-wrapper">
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="input-name"
-                      />
-                    </div>
+              <div>
+                <h2 className="text-center text-2xl font-bold mb-6">
+                  Steg 1: Betala via swish
+                </h2>
+
+                <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-6 px-4">
+                  <div className="flex-1 space-y-4">
+                    <p>
+                      Betalningen görs till Markani AB nummer XXXXXXXXX. Du kan
+                      skanna QR-koden via swish-appen. Det behövs inget
+                      meddelande i swish-appen. Kontaktuppgifter och eventuella
+                      leveransuppgifter får du ange i formuläret i steg 2.
+                    </p>
+                    <p>
+                      Vill du hämta boken själv så blir totala kostnaden{" "}
+                      <span className="font-bold">250 SEK</span>.
+                    </p>
+                    <p>
+                      Om du vill ha boken skickad tillkommer en fraktkostnad på
+                      75 SEK, alltså totalt{" "}
+                      <span className="font-bold">325 SEK</span>.
+                    </p>
+                    <p>
+                      Ange ditt val (skicka eller hämta) i formuläret i steg 2.
+                    </p>
                   </div>
-                  <div className="form-group input-container">
-                    <label htmlFor="input-email">Email:</label>
-                    <div className="input-wrapper">
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="input-email"
-                      />
-                    </div>
-                  </div>
-                  <div className="form-group input-container">
-                    <label htmlFor="input-phonenumber">Mobil:</label>
-                    <div className="input-wrapper">
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="input-phonenumber"
-                      />
-                    </div>
-                  </div>
-                  <div className="form-group input-container flex items-center">
-                    <label htmlFor="input-delivery">Leveransalternativ:</label>
-                    <div
-                      id="input-delivery"
-                      className="w-3/4 flex justify-center gap-4"
+
+                  <img
+                    src={swish}
+                    alt="QR-koden för swish"
+                    className="max-w-60 mb-4"
+                  />
+                </div>
+              </div>
+
+              <div className="max-w-2xl mx-auto px-4 mt-8">
+                <h2 className="text-xl font-semibold mb-6 text-center">
+                  Steg 2: Ange kontaktuppgifter
+                </h2>
+
+                <form className="space-y-4">
+                  <div>
+                    <label
+                      htmlFor="input-name"
+                      className="block font-medium mb-1"
                     >
-                      <label>
+                      Namn:
+                    </label>
+                    <input
+                      type="text"
+                      id="input-name"
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="input-email"
+                      className="block font-medium mb-1"
+                    >
+                      Email:
+                    </label>
+                    <input
+                      type="text"
+                      id="input-email"
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="input-phonenumber"
+                      className="block font-medium mb-1"
+                    >
+                      Mobil:
+                    </label>
+                    <input
+                      type="text"
+                      id="input-phonenumber"
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block font-medium mb-2">
+                      Leveransalternativ:
+                    </label>
+                    <div className="flex gap-4">
+                      <label className="flex items-center gap-2">
                         <input
                           type="radio"
                           name="delivery"
@@ -176,7 +227,7 @@ const Order = () => {
                         />
                         Skicka
                       </label>
-                      <label>
+                      <label className="flex items-center gap-2">
                         <input
                           type="radio"
                           name="delivery"
@@ -186,67 +237,85 @@ const Order = () => {
                             setSelectedDeliveryMethod(e.target.value)
                           }
                         />
-                        Hämta själv
+                        Hämta
                       </label>
                     </div>
                   </div>
+
                   {selectedDeliveryMethod === "send" && (
                     <>
-                      <div className="form-group input-container">
-                        <label htmlFor="input-address">Leveransadress:</label>
-                        <div className="input-wrapper">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="input-address"
-                          />
-                        </div>
+                      <div>
+                        <label
+                          htmlFor="input-address"
+                          className="block font-medium mb-1"
+                        >
+                          Leveransadress:
+                        </label>
+                        <input
+                          type="text"
+                          id="input-address"
+                          className="w-full border border-gray-300 rounded px-3 py-2"
+                        />
                       </div>
-                      <div className="form-group input-container">
-                        <label htmlFor="input-postalcode">Postkod:</label>
-                        <div className="input-wrapper">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="input-postalcode"
-                          />
-                        </div>
+
+                      <div>
+                        <label
+                          htmlFor="input-postalcode"
+                          className="block font-medium mb-1"
+                        >
+                          Postkod:
+                        </label>
+                        <input
+                          type="text"
+                          id="input-postalcode"
+                          className="w-full border border-gray-300 rounded px-3 py-2"
+                        />
                       </div>
-                      <div className="form-group input-container">
-                        <label htmlFor="input-city">Postort:</label>
-                        <div className="input-wrapper">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="input-city"
-                          />
-                        </div>
+
+                      <div>
+                        <label
+                          htmlFor="input-city"
+                          className="block font-medium mb-1"
+                        >
+                          Postort:
+                        </label>
+                        <input
+                          type="text"
+                          id="input-city"
+                          className="w-full border border-gray-300 rounded px-3 py-2"
+                        />
                       </div>
                     </>
                   )}
+
                   {selectedDeliveryMethod === "no-send" && (
-                    <div>
-                      <p>
-                        Boken kan hämtas på Lillövägen 36 när du har fått
-                        bekräftelse via email
-                      </p>
-                    </div>
+                    <p className="text-gray-700">
+                      Boken kan hämtas på Lillövägen 36 när du har fått
+                      bekräftelse via email. Du kan skriva i meddelande-rutan
+                      nedan när du föredrar att hämta boken, så återkommer jag
+                      snarast via mail.
+                    </p>
                   )}
-                  <div className="form-group input-container">
-                    <label htmlFor="input-message">Meddelande:</label>
-                    <div className="input-wrapper">
-                      <textarea
-                        className="form-control"
-                        id="input-message"
-                        rows={4}
-                      ></textarea>
-                    </div>
+
+                  <div>
+                    <label
+                      htmlFor="input-message"
+                      className="block font-medium mb-1"
+                    >
+                      Meddelande:
+                    </label>
+                    <textarea
+                      id="input-message"
+                      rows={4}
+                      className="w-full border border-gray-300 rounded px-3 py-2"
+                    ></textarea>
                   </div>
-                  <div className="submit-wrapper">
+
+                  <div className="text-center">
                     <button
                       type="button"
-                      className="btn btn-primary mb-3"
                       onClick={handleOnClickSend}
+                      className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
                     >
                       Skicka
                     </button>
