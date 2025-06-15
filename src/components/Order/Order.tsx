@@ -7,20 +7,22 @@ const Order = () => {
   const [orderSent, setOrderSent] = useState(false); // To show a loading state
   //const [validInput, setValidInput] = useState(false);
   const [responseMessage, setResponseMessage] = useState<string | null>(null);
-  const [selectedDelivery, setSelectedDelivery] = useState<string>("no-send");
+  const [selectedDeliveryMethod, setSelectedDeliveryMethod] =
+    useState<string>("no-send");
 
   const config = useConfig();
   if (!config) return <p>Loading configuration...</p>;
-  const apiUrl = config.apiUrl + "/api/v1/message/submit";
+  const apiUrl = config.apiUrl + "/api/v1/order/submit";
 
   interface RequestData {
     name: string;
     email: string;
     message: string;
-    delivery: string;
-    adress: string;
-    postal_code: string;
-    phone_number: string;
+    deliveryMethod: string;
+    address: string;
+    postalCode: string;
+    city: string;
+    phoneNumber: string;
   }
 
   interface ResponseData {
@@ -40,11 +42,12 @@ const Order = () => {
     const requestData: RequestData = {
       name: "",
       email: "",
-      delivery: "",
+      deliveryMethod: selectedDeliveryMethod,
       message: "",
-      adress: "",
-      postal_code: "",
-      phone_number: "",
+      address: "",
+      postalCode: "",
+      city: "",
+      phoneNumber: "",
     };
 
     const inputNameElement = document.getElementById(
@@ -65,29 +68,29 @@ const Order = () => {
     if (inputMessageElement) {
       requestData.message = inputMessageElement.value;
     }
-    const inputDeliveryElement = document.getElementById(
-      "input-delivery"
+    const inputAddressElement = document.getElementById(
+      "input-address"
     ) as HTMLInputElement;
-    if (inputDeliveryElement) {
-      requestData.delivery = inputDeliveryElement.value;
-    }
-    const inputAdressElement = document.getElementById(
-      "input-adress"
-    ) as HTMLInputElement;
-    if (inputAdressElement) {
-      requestData.adress = inputAdressElement.value;
+    if (inputAddressElement) {
+      requestData.address = inputAddressElement.value;
     }
     const inputPostalCodeElement = document.getElementById(
       "input-postalcode"
     ) as HTMLInputElement;
     if (inputPostalCodeElement) {
-      requestData.postal_code = inputPostalCodeElement.value;
+      requestData.postalCode = inputPostalCodeElement.value;
+    }
+    const inputCityElement = document.getElementById(
+      "input-city"
+    ) as HTMLInputElement;
+    if (inputCityElement) {
+      requestData.city = inputCityElement.value;
     }
     const inputPhoneNumberElement = document.getElementById(
       "input-phonenumber"
     ) as HTMLInputElement;
     if (inputPhoneNumberElement) {
-      requestData.phone_number = inputPostalCodeElement.value;
+      requestData.phoneNumber = inputPhoneNumberElement.value;
     }
     console.log(
       "Name: " +
@@ -95,15 +98,15 @@ const Order = () => {
         ", Email: " +
         requestData.email +
         ", Delivery: " +
-        requestData.delivery +
+        requestData.deliveryMethod +
         ", Message: " +
         requestData.message +
-        ", Adress: " +
-        requestData.adress +
+        ", Address: " +
+        requestData.address +
         ", Postal Code: " +
-        requestData.postal_code +
+        requestData.postalCode +
         ", Phone Number: " +
-        requestData.phone_number
+        requestData.phoneNumber
     );
 
     try {
@@ -111,7 +114,7 @@ const Order = () => {
       setResponseMessage(response.message);
     } catch (error) {
       console.error("Error sending POST request:", error);
-      setResponseMessage("Failed to submit order.");
+      console.log(responseMessage);
     }
     responseMessage && console.log(responseMessage);
     setOrderSent(true);
@@ -139,24 +142,37 @@ const Order = () => {
                     <label htmlFor="input-email">Email:</label>
                     <div className="input-wrapper">
                       <input
-                        type="email"
+                        type="text"
                         className="form-control"
                         id="input-email"
                       />
                     </div>
                   </div>
+                  <div className="form-group input-container">
+                    <label htmlFor="input-phonenumber">Mobil:</label>
+                    <div className="input-wrapper">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="input-phonenumber"
+                      />
+                    </div>
+                  </div>
                   <div className="form-group input-container flex items-center">
-                    <label htmlFor="input-delivery">
-                      Leveransalternativ:
-                    </label>
-                    <div id="input-delivery" className="w-3/4 flex justify-center gap-4">
+                    <label htmlFor="input-delivery">Leveransalternativ:</label>
+                    <div
+                      id="input-delivery"
+                      className="w-3/4 flex justify-center gap-4"
+                    >
                       <label>
                         <input
                           type="radio"
                           name="delivery"
                           value="send"
-                          checked={selectedDelivery === "send"}
-                          onChange={(e) => setSelectedDelivery(e.target.value)}
+                          checked={selectedDeliveryMethod === "send"}
+                          onChange={(e) =>
+                            setSelectedDeliveryMethod(e.target.value)
+                          }
                         />
                         Skicka
                       </label>
@@ -165,22 +181,24 @@ const Order = () => {
                           type="radio"
                           name="delivery"
                           value="no-send"
-                          checked={selectedDelivery === "no-send"}
-                          onChange={(e) => setSelectedDelivery(e.target.value)}
+                          checked={selectedDeliveryMethod === "no-send"}
+                          onChange={(e) =>
+                            setSelectedDeliveryMethod(e.target.value)
+                          }
                         />
                         Hämta själv
                       </label>
                     </div>
                   </div>
-                  {selectedDelivery === "send" && (
+                  {selectedDeliveryMethod === "send" && (
                     <>
                       <div className="form-group input-container">
-                        <label htmlFor="input-adress">Leveransaddress:</label>
+                        <label htmlFor="input-address">Leveransadress:</label>
                         <div className="input-wrapper">
                           <input
                             type="text"
                             className="form-control"
-                            id="input-adress"
+                            id="input-address"
                           />
                         </div>
                       </div>
@@ -195,7 +213,7 @@ const Order = () => {
                         </div>
                       </div>
                       <div className="form-group input-container">
-                        <label htmlFor="input-postalcode">Postort:</label>
+                        <label htmlFor="input-city">Postort:</label>
                         <div className="input-wrapper">
                           <input
                             type="text"
@@ -206,7 +224,7 @@ const Order = () => {
                       </div>
                     </>
                   )}
-                  {selectedDelivery === "no-send" && (
+                  {selectedDeliveryMethod === "no-send" && (
                     <div>
                       <p>
                         Boken kan hämtas på Lillövägen 36 när du har fått
@@ -226,9 +244,9 @@ const Order = () => {
                   </div>
                   <div className="submit-wrapper">
                     <button
-                      type="submit"
+                      type="button"
                       className="btn btn-primary mb-3"
-                      onClick={() => handleOnClickSend()}
+                      onClick={handleOnClickSend}
                     >
                       Skicka
                     </button>
