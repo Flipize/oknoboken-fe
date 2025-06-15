@@ -1,4 +1,4 @@
-import Menu from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar"; // ✅ updated name
 import Banner from "./components/Banner/Banner";
 import {
   BrowserRouter as Router,
@@ -39,7 +39,7 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <Banner />
         <div id="banner-end" />
-        <Menu />
+        <Navbar /> {/* ✅ renamed */}
         <ScrollDownToComponent />
         <main className="flex-grow">
           <Routes>

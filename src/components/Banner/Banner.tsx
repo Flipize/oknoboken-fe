@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
 import Hero from "../../assets/hero.jpg";
 import Logo from "../../assets/Logo.svg";
 
 const Banner = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const scrollToOknoboken = () => {
@@ -26,24 +23,9 @@ const Banner = () => {
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50" />
-      {/* Mobile Hamburger (top-right) */}
-      <div className="absolute top-4 right-4 z-20 md:hidden">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-white p-2 bg-black/40 rounded-full hover:bg-black/60 transition"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
-
       {/* Hero content */}
       <div className="relative z-10 flex flex-col items-center justify-top h-full text-white text-center px-4">
-        <img
-          src={Logo}
-          alt="Logo"
-          className="h-[300px] w-auto"
-        />
+        <img src={Logo} alt="Logo" className="h-[300px] w-auto" />
         <h4 className="hero-text-font text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
           Välkommen till Oknö – ostkustens pärla!
         </h4>

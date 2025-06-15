@@ -92,13 +92,16 @@ const Navbar = () => {
       <div className="md:hidden fixed top-4 right-4 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="regular-text-font text-white p-2 bg-black/40 rounded-full hover:bg-black/60 transition flex items-center justify-center"
+          className="regular-text-font text-white p-2 bg-black/40 rounded-full hover:bg-black/60 transition flex items-center gap-2"
           aria-label="Toggle menu"
         >
           {isOpen ? (
             <X key="close" className="w-6 h-6" />
           ) : (
-            <Menu key="menu" className="w-6 h-6" />
+            <>
+              <Menu key="menu" className="w-6 h-6" />
+              <span className="text-sm font-medium">Meny</span>
+            </>
           )}
         </button>
       </div>
