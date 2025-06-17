@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { ROUTES } from "./../routes";
 
 const baseButtonClasses =
-  "regular-text-font px-4 py-2 rounded-lg text-sm md:text-base font-medium transition duration-200 hover:bg-[#e7f3d4] hover:text-[#3b4d2c]";
+  "regular-text-font px-4 py-2 text-sm md:text-base font-medium transition duration-200 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] rounded";
 const mobileButtonClasses =
   "regular-text-font block w-full text-left px-4 py-2 rounded";
 

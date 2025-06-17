@@ -15,7 +15,7 @@ const Footer = () => {
                 href="https://www.instagram.com/lizettavonsmil?utm_source=ig_web_button_share_sheet&igsh=MWZ0cDBzN3dxc2NnZw=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1"
+                className="flex items-center gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1 rounded"
               >
                 <FaInstagram size={20} />
                 <span>Instagram</span>
@@ -26,7 +26,7 @@ const Footer = () => {
                 href="https://www.facebook.com/lizette.nilsson.16"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1"
+                className="flex items-center gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1 rounded"
               >
                 <FaFacebook size={20} />
                 <span>Facebook</span>
@@ -37,7 +37,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/lizette-nilsson-5b845453"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1"
+                className="flex items-center gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1 rounded"
               >
                 <FaLinkedin size={20} />
                 <span>LinkedIn</span>

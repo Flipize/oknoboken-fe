@@ -31,7 +31,7 @@ const Banner = () => {
         </h4>
         <button
           onClick={scrollToOknoboken}
-          className="regular-text-font px-6 py-2 bg-white text-black font-semibold rounded-lg hover:scale-105 hover:text-[#3b4d2c] transition"
+          className="regular-text-font px-6 py-2 bg-white text-black font-semibold rounded-lg hover:scale-105 hover:text-[#3b4d2c] transition rounded"
         >
           Oknöboken
         </button>
