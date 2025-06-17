@@ -128,7 +128,7 @@ const Order = () => {
           {!orderSent && (
             <div>
               <div>
-                <h2 className="text-center text-2xl font-bold mb-6">
+                <h2 className="regular-text-font text-center text-2xl font-bold mb-6">
                   Steg 1: Betala via swish
                 </h2>
 
@@ -163,11 +163,11 @@ const Order = () => {
               </div>
 
               <div className="max-w-2xl mx-auto px-4 mt-8">
-                <h2 className="text-xl font-semibold mb-6 text-center">
+                <h2 className="regular-text-font text-xl font-semibold mb-6 text-center">
                   Steg 2: Ange kontaktuppgifter
                 </h2>
 
-                <form className="space-y-4">
+                <form className="regular-text-font space-y-4">
                   <div>
                     <label
                       htmlFor="input-name"
@@ -225,7 +225,7 @@ const Order = () => {
                             setSelectedDeliveryMethod(e.target.value)
                           }
                         />
-                        Skicka
+                        <span className="ml-1">Skicka</span>
                       </label>
                       <label className="flex items-center gap-2">
                         <input
@@ -237,7 +237,7 @@ const Order = () => {
                             setSelectedDeliveryMethod(e.target.value)
                           }
                         />
-                        Hämta
+                        <span className="ml-1">Hämta</span>
                       </label>
                     </div>
                   </div>
@@ -325,17 +325,17 @@ const Order = () => {
             </div>
           )}
           {orderSent && (
-            <div className="container">
-              <div>Tack för din beställning!</div>
-              <div>
-                <button
-                  type="button"
-                  className="btn btn-primary mb-3"
-                  onClick={() => setOrderSent(false)}
-                >
-                  Gå tillbaka
-                </button>
-              </div>
+            <div className="regular-text-font flex flex-col items-center text-center space-y-4">
+              <p>
+                Tack för din beställning!
+              </p>
+              <button
+                type="button"
+                className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+                onClick={() => setOrderSent(false)}
+              >
+                Gå tillbaka
+              </button>
             </div>
           )}
         </div>
