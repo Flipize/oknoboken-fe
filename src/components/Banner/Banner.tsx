@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Hero from "/assets/images/Hero.jpg";
 import Logo from "/assets/images/Logo.svg";
 
 const Banner = () => {
@@ -19,7 +18,9 @@ const Banner = () => {
   return (
     <div
       className="relative h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url(${Hero})` }}
+      style={{
+  backgroundImage: `url(${import.meta.env.BASE_URL}assets/images/Hero.jpg)`
+}}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50" />
