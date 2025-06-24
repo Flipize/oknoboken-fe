@@ -2,7 +2,7 @@ import { useState } from "react";
 import Card from "../Card";
 import axios from "axios";
 import useConfig from "../../useConfig";
-import swish from "../../assets/swish.png";
+import swish from "/assets/images/swish.png";
 
 const Order = () => {
   const [orderSent, setOrderSent] = useState(false); // To show a loading state

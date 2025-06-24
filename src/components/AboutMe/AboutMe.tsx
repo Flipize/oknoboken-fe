@@ -1,6 +1,6 @@
 import Card from "../Card";
 import Paragraph from "../Paragraph";
-import Lizette from "../../assets/Lizette.png";
+import Lizette from "/assets/images/Lizette.png";
 
 const AboutMe = () => {
   return (

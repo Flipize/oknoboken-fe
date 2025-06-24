@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Hero from "../../assets/hero.jpg";
-import Logo from "../../assets/Logo.svg";
+import Hero from "/assets/images/Hero.jpg";
+import Logo from "/assets/images/Logo.svg";
 
 const Banner = () => {
   const navigate = useNavigate();

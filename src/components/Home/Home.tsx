@@ -1,5 +1,5 @@
 import Card from "../Card";
-import Boken from "../../assets/boken.jpg";
+import Boken from "/assets/images/Boken.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Paragraph from "../Paragraph";
