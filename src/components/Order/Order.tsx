@@ -3,13 +3,35 @@ import Card from "../Card";
 import axios from "axios";
 import useConfig from "../../useConfig";
 import swish from "../../assets/swish.png";
+import { Link } from "react-router-dom";
 
 const Order = () => {
   const [orderSent, setOrderSent] = useState(false); // To show a loading state
   //const [validInput, setValidInput] = useState(false);
   const [responseMessage, setResponseMessage] = useState<string | null>(null);
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] =
-    useState<string>("no-send");
+    useState<string>("pick-up");
+  const price = selectedDeliveryMethod === "send" ? 325 : 250;
+
+  const [formData, setFormData] = useState<RequestData>({
+  name: "",
+  email: "",
+  deliveryMethod: selectedDeliveryMethod,
+  message: "",
+  address: "",
+  postalCode: "",
+  city: "",
+  phoneNumber: "",
+});
+
+  const [errors, setErrors] = useState({
+  name: "",
+  email: "",
+  phoneNumber: "",
+  address: "",
+  postalCode: "",
+  city: "",
+  });
 
   const config = useConfig();
   if (!config) return <p>Loading configuration...</p>;
@@ -39,87 +61,100 @@ const Order = () => {
     return response.data;
   };
 
-  const handleOnClickSend = async () => {
-    const requestData: RequestData = {
-      name: "",
-      email: "",
-      deliveryMethod: selectedDeliveryMethod,
-      message: "",
-      address: "",
-      postalCode: "",
-      city: "",
-      phoneNumber: "",
-    };
-
-    const inputNameElement = document.getElementById(
-      "input-name"
-    ) as HTMLInputElement;
-    if (inputNameElement) {
-      requestData.name = inputNameElement.value;
-    }
-    const inputEmailElement = document.getElementById(
-      "input-email"
-    ) as HTMLInputElement;
-    if (inputEmailElement) {
-      requestData.email = inputEmailElement.value;
-    }
-    const inputMessageElement = document.getElementById(
-      "input-message"
-    ) as HTMLInputElement;
-    if (inputMessageElement) {
-      requestData.message = inputMessageElement.value;
-    }
-    const inputAddressElement = document.getElementById(
-      "input-address"
-    ) as HTMLInputElement;
-    if (inputAddressElement) {
-      requestData.address = inputAddressElement.value;
-    }
-    const inputPostalCodeElement = document.getElementById(
-      "input-postalcode"
-    ) as HTMLInputElement;
-    if (inputPostalCodeElement) {
-      requestData.postalCode = inputPostalCodeElement.value;
-    }
-    const inputCityElement = document.getElementById(
-      "input-city"
-    ) as HTMLInputElement;
-    if (inputCityElement) {
-      requestData.city = inputCityElement.value;
-    }
-    const inputPhoneNumberElement = document.getElementById(
-      "input-phonenumber"
-    ) as HTMLInputElement;
-    if (inputPhoneNumberElement) {
-      requestData.phoneNumber = inputPhoneNumberElement.value;
-    }
-    console.log(
-      "Name: " +
-        requestData.name +
-        ", Email: " +
-        requestData.email +
-        ", Delivery: " +
-        requestData.deliveryMethod +
-        ", Message: " +
-        requestData.message +
-        ", Address: " +
-        requestData.address +
-        ", Postal Code: " +
-        requestData.postalCode +
-        ", Phone Number: " +
-        requestData.phoneNumber
-    );
-
-    try {
-      const response = await sendPostRequest(apiUrl, requestData);
-      setResponseMessage(response.message);
-    } catch (error) {
-      console.error("Error sending POST request:", error);
-      console.log(responseMessage);
-    }
-    responseMessage && console.log(responseMessage);
-    setOrderSent(true);
+  const validateFormBasic = (): boolean => {
+  const newErrors = {
+    name: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+    postalCode: "",
+    city: "",
   };
+
+  let isValid = true;
+
+  if (!formData.name.trim()) {
+    newErrors.name = "Namn är obligatoriskt.";
+    isValid = false;
+  }
+
+  if (!formData.email.trim()) {
+    newErrors.email = "Email är obligatoriskt.";
+    isValid = false;
+  } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(formData.email)) {
+    newErrors.email = "Ogiltig email-adress.";
+    isValid = false;
+  }
+
+  if (!formData.phoneNumber.trim()) {
+    newErrors.phoneNumber = "Mobilnummer är obligatoriskt.";
+    isValid = false;
+  } else if (!/^[\d\s\-\+]+$/.test(formData.phoneNumber)) {
+    newErrors.phoneNumber = "Ogiltigt telefonnummer";
+    isValid = false;
+  }
+
+  setErrors(newErrors);
+  return isValid;
+};
+
+  const validateFormSend = (): boolean => {
+    validateFormBasic();
+  const newErrors = {
+    name: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+    postalCode: "",
+    city: "",
+  };
+
+  let isValid = true;
+
+  if (!formData.address.trim()) {
+    newErrors.address = "Adress är obligatoriskt.";
+    isValid = false;
+  }
+
+  if (!formData.postalCode.trim()) {
+    newErrors.postalCode = "Postkod är obligatoriskt.";
+    isValid = false;
+  }
+
+  if (!formData.city.trim()) {
+    newErrors.city = "Ort är obligatoriskt.";
+    isValid = false;
+  }
+
+  setErrors(newErrors);
+  return isValid;
+};
+
+
+
+  const handleOnClickSend = async () => {
+  // If form contains invalid input, do not send the POST request.
+    if (!validateFormBasic()) return;
+    if (selectedDeliveryMethod === "send") {
+      if (!validateFormSend()) return;
+    }
+
+  const requestData: RequestData = {
+    ...formData,
+    deliveryMethod: selectedDeliveryMethod,
+  };
+
+  console.log("Sending order:", requestData);
+
+  try {
+    const response = await sendPostRequest(apiUrl, requestData);
+    setResponseMessage(response.message);
+    setOrderSent(true);
+  } catch (error) {
+    console.error("Error sending POST request:", error);
+    setResponseMessage("Något gick fel. Försök igen senare.");
+  }
+};
 
   return (
     <div className="max-w-600 mx-auto">
@@ -127,6 +162,16 @@ const Order = () => {
         <div className="">
           {!orderSent && (
             <div>
+              <div className="max-w-2xl mx-auto px-4 mt-8">
+                Boken finns att köpa på följande platser:
+                <ul>
+                  <li>Givells Attelje - Storgatan 23, Mönsterås</li>
+                  <li>Mönsterås Turistbyrå - Storgatan 34, Mönsterås</li>
+                  <li>Kaffetorpets Camping (kiosken) - Oknövägen 56, Mönsterås</li>
+                </ul>
+                <p>Du kan även beställa boken via denna hemsida, då görs det i 2 steg - först betalning via swish och sedan får du fylla i kontaktuppgifter och eventuellt leveransuppgifter om du vill ha boken skickad med posten.</p>
+                <p></p>
+              </div>
               <div>
                 <h2 className="regular-text-font text-center text-2xl font-bold mb-6">
                   Steg 1: Betala via swish
@@ -135,23 +180,53 @@ const Order = () => {
                 <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-6 px-4">
                   <div className="flex-1 space-y-4">
                     <p>
-                      Betalningen görs till Markani AB nummer XXXXXXXXX. Du kan
-                      skanna QR-koden via swish-appen. Det behövs inget
-                      meddelande i swish-appen. Kontaktuppgifter och eventuella
-                      leveransuppgifter får du ange i formuläret i steg 2.
+                      Välj först om du vill ha boken skickad eller hämta själv.
+                      Väljer du hämta så hämtas boken på Lillövägen 36, Mönsterås.
+                      Om du vill ha boken skickad så tillkommer en fraktkostnad på 75 SEK (totalt 325 SEK).
                     </p>
+                    <div>
+                    <label className="block font-medium mb-2">
+                      Leveransalternativ: <span className="text-red-600">*</span>
+                    </label>
+                    <div className="flex gap-4">
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="delivery"
+                          value="send"
+                          checked={selectedDeliveryMethod === "send"}
+                          onChange={(e) =>
+                            setSelectedDeliveryMethod(e.target.value)
+                          }
+                        />
+                        <span className="ml-1">Skicka</span>
+                      </label>
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="delivery"
+                          value="pick-up"
+                          checked={selectedDeliveryMethod === "pick-up"}
+                          onChange={(e) =>
+                            setSelectedDeliveryMethod(e.target.value)
+                          }
+                        />
+                        <span className="ml-1">Hämta</span>
+                      </label>
+                    </div>
+                    <p>Pris: <span className="font-bold"> {price} SEK </span></p>
                     <p>
-                      Vill du hämta boken själv så blir totala kostnaden{" "}
-                      <span className="font-bold">250 SEK</span>.
+                      Sedan kan du swisha beloppet genom att skanna QR-koden eller trycka här: Betala med swish
+                      Belopp och mottagare är då förinställt. Behöver du fylla i uppgifterna manuellt så gäller nedan:
                     </p>
-                    <p>
-                      Om du vill ha boken skickad tillkommer en fraktkostnad på
-                      75 SEK, alltså totalt{" "}
-                      <span className="font-bold">325 SEK</span>.
-                    </p>
-                    <p>
-                      Ange ditt val (skicka eller hämta) i formuläret i steg 2.
-                    </p>
+                    <ul>
+                  <li>Mottagare nummer: 12324424</li>
+                  <li>Belopp: 250 SEK utan frakt, eller 325 SEK med frakt.</li>
+                </ul>
+                <p>Nummret som betalningen görs till, tillhör Markani AB</p>
+                <p>När betalningen är gjord kan du fylla i kontaktuppgifter och eventuellt leveransuppgifter nedan i steg 2.</p>
+                  </div>
+
                   </div>
 
                   <img
@@ -173,13 +248,16 @@ const Order = () => {
                       htmlFor="input-name"
                       className="block font-medium mb-1"
                     >
-                      Namn:
+                      Namn: <span className="text-red-600">*</span>
                     </label>
                     <input
                       type="text"
                       id="input-name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full border border-gray-300 rounded px-3 py-2"
                     />
+                    {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                   </div>
 
                   <div>
@@ -187,13 +265,16 @@ const Order = () => {
                       htmlFor="input-email"
                       className="block font-medium mb-1"
                     >
-                      Email:
+                      Email: <span className="text-red-600">*</span>
                     </label>
                     <input
                       type="text"
                       id="input-email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full border border-gray-300 rounded px-3 py-2"
                     />
+                    {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                   </div>
 
                   <div>
@@ -201,45 +282,16 @@ const Order = () => {
                       htmlFor="input-phonenumber"
                       className="block font-medium mb-1"
                     >
-                      Mobil:
+                      Mobil: <span className="text-red-600">*</span>
                     </label>
                     <input
                       type="text"
                       id="input-phonenumber"
+                      value={formData.phoneNumber}
+                      onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                       className="w-full border border-gray-300 rounded px-3 py-2"
                     />
-                  </div>
-
-                  <div>
-                    <label className="block font-medium mb-2">
-                      Leveransalternativ:
-                    </label>
-                    <div className="flex gap-4">
-                      <label className="flex items-center gap-2">
-                        <input
-                          type="radio"
-                          name="delivery"
-                          value="send"
-                          checked={selectedDeliveryMethod === "send"}
-                          onChange={(e) =>
-                            setSelectedDeliveryMethod(e.target.value)
-                          }
-                        />
-                        <span className="ml-1">Skicka</span>
-                      </label>
-                      <label className="flex items-center gap-2">
-                        <input
-                          type="radio"
-                          name="delivery"
-                          value="no-send"
-                          checked={selectedDeliveryMethod === "no-send"}
-                          onChange={(e) =>
-                            setSelectedDeliveryMethod(e.target.value)
-                          }
-                        />
-                        <span className="ml-1">Hämta</span>
-                      </label>
-                    </div>
+                    {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber}</p>}
                   </div>
 
                   {selectedDeliveryMethod === "send" && (
@@ -249,13 +301,16 @@ const Order = () => {
                           htmlFor="input-address"
                           className="block font-medium mb-1"
                         >
-                          Leveransadress:
+                          Leveransadress: <span className="text-red-600">*</span>
                         </label>
                         <input
                           type="text"
                           id="input-address"
+                          value={formData.address}
+                          onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                           className="w-full border border-gray-300 rounded px-3 py-2"
                         />
+                        {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
                       </div>
 
                       <div>
@@ -263,13 +318,16 @@ const Order = () => {
                           htmlFor="input-postalcode"
                           className="block font-medium mb-1"
                         >
-                          Postkod:
+                          Postkod: <span className="text-red-600">*</span>
                         </label>
                         <input
                           type="text"
                           id="input-postalcode"
+                          value={formData.postalCode}
+                          onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
                           className="w-full border border-gray-300 rounded px-3 py-2"
                         />
+                        {errors.postalCode && <p className="text-red-500 text-sm">{errors.postalCode}</p>}
                       </div>
 
                       <div>
@@ -277,18 +335,21 @@ const Order = () => {
                           htmlFor="input-city"
                           className="block font-medium mb-1"
                         >
-                          Postort:
+                          Postort: <span className="text-red-600">*</span>
                         </label>
                         <input
                           type="text"
                           id="input-city"
+                          value={formData.city}
+                          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                           className="w-full border border-gray-300 rounded px-3 py-2"
                         />
+                        {errors.city && <p className="text-red-500 text-sm">{errors.city}</p>}
                       </div>
                     </>
                   )}
 
-                  {selectedDeliveryMethod === "no-send" && (
+                  {selectedDeliveryMethod === "pick-up" && (
                     <p className="text-gray-700">
                       Boken kan hämtas på Lillövägen 36 när du har fått
                       bekräftelse via email. Du kan skriva i meddelande-rutan
@@ -307,6 +368,8 @@ const Order = () => {
                     <textarea
                       id="input-message"
                       rows={4}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full border border-gray-300 rounded px-3 py-2"
                     ></textarea>
                   </div>

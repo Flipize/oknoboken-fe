@@ -77,7 +77,7 @@ const Main = () => {
             <div className="flex flex-col items-center md:items-end">
               <img
                 src={Boken}
-                alt="Oknoboken"
+                alt="Bild på Oknöbokens omslag"
                 className="max-w-100 shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-gray-200 w-9/10"
               />
               <button
