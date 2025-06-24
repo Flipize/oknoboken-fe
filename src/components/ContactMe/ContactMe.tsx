@@ -59,6 +59,8 @@ const ContactMe = () => {
       setResponseContent("Kunde inte skicka meddelandet.");
     }
 
+    console.log("Response: " + responseContent);
+
     setMessageSent(true);
   };
 

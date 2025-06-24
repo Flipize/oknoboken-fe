@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Card from "../Card";
 import axios from "axios";
 import useConfig from "../../useConfig";
 import swish from "../../assets/swish.png";
-import { Link } from "react-router-dom";
 
 const Order = () => {
   const [orderSent, setOrderSent] = useState(false); // To show a loading state
@@ -154,6 +153,7 @@ const Order = () => {
     console.error("Error sending POST request:", error);
     setResponseMessage("Något gick fel. Försök igen senare.");
   }
+  console.log("Response: " + responseMessage);
 };
 
   return (
