@@ -18,25 +18,23 @@ const Banner = () => {
   return (
     <div
       data-darkreader-skip
-      className="relative h-screen bg-cover bg-center"
+      className="relative h-[300px] md:h-[calc(100vh-80px)] bg-cover bg-center"
       style={{
-  backgroundImage: `url(${import.meta.env.BASE_URL}assets/images/Hero.jpg)`
-}}
+        backgroundImage: `url(${
+          import.meta.env.BASE_URL
+        }assets/images/Hero.jpg)`,
+      }}
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50" />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/50" />
+
       {/* Hero content */}
-      <div className="relative z-10 flex flex-col items-center justify-top h-full text-white text-center px-4">
-        <img src={Logo} alt="Logo" className="h-[300px] w-auto" />
-        <h4 className="hero-text-font text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-          Välkommen till Oknö – ostkustens pärla!
-        </h4>
-        <button
-          onClick={scrollToOknoboken}
-          className="regular-text-font px-6 py-2 bg-white text-black font-semibold rounded-lg hover:scale-105 hover:text-[#3b4d2c] transition rounded"
-        >
-          Oknöboken
-        </button>
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
+        <img
+          src={Logo}
+          alt="Logo"
+          className="w-[250px] md:w-[500px] max-w-full drop-shadow-lg"
+        />
       </div>
     </div>
   );

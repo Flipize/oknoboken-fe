@@ -4,9 +4,11 @@ import { Menu, X } from "lucide-react";
 import { ROUTES } from "./../routes";
 
 const baseButtonClasses =
-  "regular-text-font px-4 py-2 text-sm md:text-base font-medium transition duration-200 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] rounded";
-const mobileButtonClasses =
+  "regular-text-font px-4 py-2 text-sm md:text-base font-medium transition duration-200 rounded";
+const hoverClasses = "hover:bg-[#e7f3d4] hover:text-[#3b4d2c]";
+const mobileButtonBaseClasses =
   "regular-text-font block w-full text-left px-4 py-2 rounded";
+const mobileHoverClasses = "hover:bg-[#e7f3d4] hover:text-[#3b4d2c]";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,14 +27,21 @@ const Navbar = () => {
     }, 100);
   };
 
-  const isActive = (path: string) =>
-    location.pathname === path ? "bg-[#a1c563] text-white" : "text-gray-800";
+  const isActive = (path: string) => location.pathname === path;
 
-  const getButtonClasses = (path: string) =>
-    `${baseButtonClasses} ${isActive(path)}`;
+  const getButtonClasses = (path: string) => {
+    const active = isActive(path);
+    return `${baseButtonClasses} ${
+      active ? "bg-[#a1c563] text-white" : `text-gray-800 ${hoverClasses}`
+    }`;
+  };
 
-  const getMobileButtonClasses = (path: string) =>
-    `${mobileButtonClasses} ${isActive(path)}`;
+  const getMobileButtonClasses = (path: string) => {
+    const active = isActive(path);
+    return `${mobileButtonBaseClasses} ${
+      active ? "bg-[#a1c563] text-white" : `text-gray-800 ${mobileHoverClasses}`
+    }`;
+  };
 
   // Close menu when clicking outside
   useEffect(() => {
