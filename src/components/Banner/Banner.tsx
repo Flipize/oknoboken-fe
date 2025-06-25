@@ -17,6 +17,7 @@ const Banner = () => {
 
   return (
     <div
+      data-darkreader-skip
       className="relative h-screen bg-cover bg-center"
       style={{
   backgroundImage: `url(${import.meta.env.BASE_URL}assets/images/Hero.jpg)`

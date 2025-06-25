@@ -10,7 +10,7 @@ const Order = () => {
   const [responseMessage, setResponseMessage] = useState<string | null>(null);
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] =
     useState<string>("pick-up");
-  const price = selectedDeliveryMethod === "send" ? 325 : 250;
+  const basePrice = selectedDeliveryMethod === "send" ? 325 : 250;
 
   const [formData, setFormData] = useState<RequestData>({
   name: "",
@@ -21,7 +21,10 @@ const Order = () => {
   postalCode: "",
   city: "",
   phoneNumber: "",
+  bookAmount: "1",
 });
+
+const totalPrice = basePrice * Number(formData.bookAmount);  // Multiply base price by book amount
 
   const [errors, setErrors] = useState({
   name: "",
@@ -45,6 +48,7 @@ const Order = () => {
     postalCode: string;
     city: string;
     phoneNumber: string;
+    bookAmount: string;
   }
 
   interface ResponseData {
@@ -129,7 +133,10 @@ const Order = () => {
   return isValid;
 };
 
-
+const handleBookAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Math.max(1, Math.min(10, Number(e.target.value)));  // Enforce min and max values
+    setFormData({ ...formData, bookAmount: value.toString() });  // Store value as string
+  };
 
   const handleOnClickSend = async () => {
   // If form contains invalid input, do not send the POST request.
@@ -169,7 +176,7 @@ const Order = () => {
                   <li>Mönsterås Turistbyrå - Storgatan 34, Mönsterås</li>
                   <li>Kaffetorpets Camping (kiosken) - Oknövägen 56, Mönsterås</li>
                 </ul>
-                <p>Du kan även beställa boken via denna hemsida, då görs det i 2 steg - först betalning via swish och sedan får du fylla i kontaktuppgifter och eventuellt leveransuppgifter om du vill ha boken skickad med posten.</p>
+                <p>Du kan även beställa boken via denna hemsida. Följ då instruktionerna i Steg 1 och Steg 2 nedan</p>
                 <p></p>
               </div>
               <div>
@@ -179,12 +186,26 @@ const Order = () => {
 
                 <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-6 px-4">
                   <div className="flex-1 space-y-4">
-                    <p>
-                      Välj först om du vill ha boken skickad eller hämta själv.
-                      Väljer du hämta så hämtas boken på Lillövägen 36, Mönsterås.
-                      Om du vill ha boken skickad så tillkommer en fraktkostnad på 75 SEK (totalt 325 SEK).
-                    </p>
                     <div>
+                      <p>1. Välj hur många böcker du vill köpa:</p>
+                      <label
+                          htmlFor="input-bookAmount"
+                          className="block font-medium mb-1 mr-2"
+                        >
+                          Antal böcker:
+                        </label>
+                        <input
+                          type="number"
+                          id="input-bookAmount"
+                          value={formData.bookAmount}
+                          onChange={handleBookAmountChange}
+                          className="w-20% border border-gray-300 rounded px-3 py-2"
+                          min={1} // Min value
+                          max={10} // Max value
+                        />
+                      </div>
+                    <div>
+                      <p>2. Välj om du vill ha boken skickad eller hämta själv på Lillövägen 36, Mönsterås:</p>
                     <label className="block font-medium mb-2">
                       Leveransalternativ: <span className="text-red-600">*</span>
                     </label>
@@ -214,26 +235,32 @@ const Order = () => {
                         <span className="ml-1">Hämta</span>
                       </label>
                     </div>
-                    <p>Pris: <span className="font-bold"> {price} SEK </span></p>
+                    <p>Pris: <span className="font-bold"> {totalPrice} SEK </span></p>
                     <p>
-                      Sedan kan du swisha beloppet genom att skanna QR-koden eller trycka här: Betala med swish
-                      Belopp och mottagare är då förinställt. Behöver du fylla i uppgifterna manuellt så gäller nedan:
-                    </p>
+                      3. Kontrollera beloppet ovan och swisha det till XXXXXXX (Markani AB)
+                    </p>          
                     <ul>
                   <li>Mottagare nummer: 12324424</li>
-                  <li>Belopp: 250 SEK utan frakt, eller 325 SEK med frakt.</li>
+                  <li>Belopp: {totalPrice} SEK</li>
                 </ul>
-                <p>Nummret som betalningen görs till, tillhör Markani AB</p>
-                <p>När betalningen är gjord kan du fylla i kontaktuppgifter och eventuellt leveransuppgifter nedan i steg 2.</p>
+                <div className="flex flex-col sm:flex-row items-start gap-4">
+  <img
+    src={swish}
+    alt="QR-koden för swish"
+    className="w-60 shrink-0 mb-4 sm:mb-0"
+  />
+
+  <div>
+    <p>
+      Om Swish är installerat på denna enhet kan du trycka här:
+      <strong> Betala med Swish</strong>
+    </p>
+  </div>
+</div>
+                <p className="mt-2">4. När betalningen är gjord kan du fylla i kontaktuppgifter och eventuellt leveransuppgifter nedan i steg 2.</p>
                   </div>
 
                   </div>
-
-                  <img
-                    src={swish}
-                    alt="QR-koden för swish"
-                    className="max-w-60 mb-4"
-                  />
                 </div>
               </div>
 
