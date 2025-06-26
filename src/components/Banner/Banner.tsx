@@ -1,20 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import Logo from "/assets/images/Logo.svg";
 
 const Banner = () => {
-  const navigate = useNavigate();
-
-  const scrollToOknoboken = () => {
-    if (window.location.pathname !== "/") {
-      navigate("/", { state: { scrollToOknoboken: true } });
-    } else {
-      const el = document.querySelector('[data-scroll-target="oknoboken"]');
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  };
-
   return (
     <div
       data-darkreader-skip
