@@ -78,16 +78,16 @@ const Navbar = () => {
           Köp
         </button>
         <button
-          onClick={() => navigate(ROUTES.ABOUT)}
-          className={getButtonClasses(ROUTES.ABOUT)}
-        >
-          Om mig
-        </button>
-        <button
           onClick={() => navigate(ROUTES.GALLERY)}
           className={getButtonClasses(ROUTES.GALLERY)}
         >
           Galleri
+        </button>
+        <button
+          onClick={() => navigate(ROUTES.ABOUT)}
+          className={getButtonClasses(ROUTES.ABOUT)}
+        >
+          Om mig
         </button>
         <button
           onClick={() => navigate(ROUTES.CONTACT)}
@@ -138,21 +138,21 @@ const Navbar = () => {
           </button>
           <button
             onClick={() => {
-              navigate(ROUTES.ABOUT);
-              setIsOpen(false);
-            }}
-            className={getMobileButtonClasses(ROUTES.ABOUT)}
-          >
-            Om mig
-          </button>
-          <button
-            onClick={() => {
               navigate(ROUTES.GALLERY);
               setIsOpen(false);
             }}
             className={getMobileButtonClasses(ROUTES.GALLERY)}
           >
             Galleri
+          </button>
+          <button
+            onClick={() => {
+              navigate(ROUTES.ABOUT);
+              setIsOpen(false);
+            }}
+            className={getMobileButtonClasses(ROUTES.ABOUT)}
+          >
+            Om mig
           </button>
           <button
             onClick={() => {

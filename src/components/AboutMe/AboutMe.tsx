@@ -6,8 +6,8 @@ const AboutMe = () => {
   return (
     <div className="max-w-600 mx-auto">
       <Card title="Om mig">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:mx-30">
-          <div className="space-y-4">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8">
+          <div className="lg:w-2/3 space-y-4 max-w-prose lg:text-left">
             <Paragraph>
               Hej! Jag heter Lizette Nilsson och är författare till boken
               Oknöboken.
@@ -82,11 +82,11 @@ const AboutMe = () => {
               Skjut inte upp det du vill göra, lev livet idag!
             </Paragraph>
           </div>
-          <div className="flex justify-center md:justify-end">
+          <div className="w-full max-w-sm aspect-[3/4]">
             <img
               src={Lizette}
               alt="En bild på mig, när jag precis hade fått hem böckerna i juni 2025"
-              className="max-h-200 shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-gray-200"
+              className="w-full h-full object-cover rounded shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-gray-200"
             />
           </div>
         </div>

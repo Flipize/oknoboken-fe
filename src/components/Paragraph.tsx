@@ -6,7 +6,7 @@ interface ParagraphProps {
 
 const Paragraph = ({ children }: ParagraphProps) => {
   return (
-    <p className="text-base sm:text-lg md:text-xl leading-relaxed">
+    <p className="text-base sm:text-lg">
       {children}
     </p>
   );

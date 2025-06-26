@@ -22,9 +22,9 @@ const Main = () => {
       data-scroll-target="oknoboken"
       className="scroll-mt-20 max-w-600 mx-auto"
     >
-      <Card title="Oknöboken">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:mx-30">
-          <div className="space-y-4">
+      <Card title="Oknö - Ostkustens Pärla">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8">
+          <div className="lg:w-2/3 space-y-4 max-w-prose lg:text-left">
             <Paragraph>
               Min bok om Oknö är naturligtvis en hyllning till denna underbara
               plats men jag vill också genom boken ge fler möjlighet att få
@@ -85,7 +85,7 @@ const Main = () => {
                 className="mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition w-9/10"
                 onClick={() => navigate("/order")}
               >
-                Köp
+                Köp boken
               </button>
             </div>
           </div>
