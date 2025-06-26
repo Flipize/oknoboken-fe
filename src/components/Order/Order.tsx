@@ -45,6 +45,12 @@ const Order = () => {
   const totalPrice = basePrice * Number(formData.bookAmount); // Multiply base price by book amount
   const swishLink =
     "swish://paymentrequest?version=1&payee=1231181189&message=Okn%C3%B6boken%20-%20Best%C3%A4llning%20fr%C3%A5n%20lizettavonsmil.se";
+  const swishNumber = "1231181189";
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(swishNumber);
+    alert("Swish-numret har kopierats!");
+  };
 
   const [errors, setErrors] = useState({
     name: "",
@@ -322,7 +328,15 @@ const Order = () => {
                     </p>
                     <ul className="list-disc list-inside text-sm text-gray-700">
                       <li>
-                        Mottagare nummer: <strong>1233391273</strong>
+                        Mottagare nummer: <strong>{swishNumber}</strong>{" "}
+                        <button
+                          onClick={copyToClipboard}
+                          className="text-gray-500 text-sm ml-1 hover:text-gray-700 transition"
+                          aria-label="Kopiera Swish-nummer"
+                          title="kopiera"
+                        >
+                          📋
+                        </button>
                       </li>
                       <li>
                         Belopp: <strong>{totalPrice} SEK</strong>

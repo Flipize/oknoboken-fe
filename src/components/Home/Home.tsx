@@ -1,27 +1,13 @@
 import Card from "../Card";
 import Boken from "/assets/images/Boken.jpg";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Paragraph from "../Paragraph";
 
 const Main = () => {
-  const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (location.state?.scrollToOknoboken) {
-      const el = document.querySelector('[data-scroll-target="oknoboken"]');
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  }, [location]);
-
   return (
-    <div
-      data-scroll-target="oknoboken"
-      className="scroll-mt-20 max-w-600 mx-auto"
-    >
+    <div>
       <Card title="Oknö - Ostkustens Pärla">
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8">
           <div className="lg:w-2/3 space-y-4 max-w-prose lg:text-left">

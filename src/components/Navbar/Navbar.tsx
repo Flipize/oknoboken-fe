@@ -16,149 +16,155 @@ const Navbar = () => {
   const navigate = useNavigate();
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const scrollToOknoboken = () => {
-    navigate(ROUTES.HOME);
+  /* ──────────────────────────
+     Shared helper: navigate + scroll
+     • path        – route to navigate to
+     • anchorId    – element to scroll to after nav (default banner-end)
+  ────────────────────────── */
+  const handleNavClick = (path: string, anchorId: string = "banner-end") => {
     setIsOpen(false);
+
+    if (location.pathname !== path) {
+      navigate(path);
+    }
+
+    // Always scroll, even if same path
     setTimeout(() => {
-      const el = document.getElementById("oknoboken");
+      let el = document.querySelector(`[data-scroll-target="${anchorId}"]`);
+      if (!el) el = document.getElementById(anchorId);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    }, 100);
+    }, 250);
   };
 
+  /* ───────── Helpers for active styles ───────── */
   const isActive = (path: string) => location.pathname === path;
 
-  const getButtonClasses = (path: string) => {
-    const active = isActive(path);
-    return `${baseButtonClasses} ${
-      active ? "bg-[#a1c563] text-white" : `text-gray-800 ${hoverClasses}`
+  const getButtonClasses = (path: string) =>
+    `${baseButtonClasses} ${
+      isActive(path)
+        ? "bg-[#a1c563] text-white"
+        : `text-gray-800 ${hoverClasses}`
     }`;
-  };
 
-  const getMobileButtonClasses = (path: string) => {
-    const active = isActive(path);
-    return `${mobileButtonBaseClasses} ${
-      active ? "bg-[#a1c563] text-white" : `text-gray-800 ${mobileHoverClasses}`
+  const getMobileButtonClasses = (path: string) =>
+    `${mobileButtonBaseClasses} ${
+      isActive(path)
+        ? "bg-[#a1c563] text-white"
+        : `text-gray-800 ${mobileHoverClasses}`
     }`;
-  };
 
-  // Close menu when clicking outside
+  /* ───────── Close the drawer on outside click ───────── */
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    function handleClickOutside(e: MouseEvent) {
       if (
         isOpen &&
         menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
+        !menuRef.current.contains(e.target as Node)
       ) {
         setIsOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
+  /* ────────────────────────── RENDER ────────────────────────── */
   return (
     <nav className="sticky top-0 z-50">
-      {/* Desktop Navbar */}
+      {/* Desktop navbar */}
       <div className="hidden md:flex justify-center gap-6 bg-white/90 backdrop-blur-md shadow-md px-4 py-3">
         <button
-          onClick={scrollToOknoboken}
+          onClick={() => handleNavClick(ROUTES.HOME)}
           className={getButtonClasses(ROUTES.HOME)}
         >
           Oknöboken
         </button>
+
         <button
-          onClick={() => navigate(ROUTES.ORDER)}
+          onClick={() => handleNavClick(ROUTES.ORDER)}
           className={getButtonClasses(ROUTES.ORDER)}
         >
           Köp
         </button>
+
         <button
-          onClick={() => navigate(ROUTES.GALLERY)}
+          onClick={() => handleNavClick(ROUTES.GALLERY)}
           className={getButtonClasses(ROUTES.GALLERY)}
         >
           Galleri
         </button>
+
         <button
-          onClick={() => navigate(ROUTES.ABOUT)}
+          onClick={() => handleNavClick(ROUTES.ABOUT)}
           className={getButtonClasses(ROUTES.ABOUT)}
         >
           Om mig
         </button>
+
         <button
-          onClick={() => navigate(ROUTES.CONTACT)}
+          onClick={() => handleNavClick(ROUTES.CONTACT)}
           className={getButtonClasses(ROUTES.CONTACT)}
         >
           Kontakt
         </button>
       </div>
 
-      {/* Mobile Hamburger Button */}
+      {/* Mobile hamburger button */}
       <div className="md:hidden fixed top-4 right-4 z-50">
         <button
+          aria-label="Toggle menu"
           onClick={() => setIsOpen(!isOpen)}
           className="regular-text-font text-white p-2 bg-black/40 rounded-full hover:bg-black/60 transition flex items-center gap-2"
-          aria-label="Toggle menu"
         >
           {isOpen ? (
-            <X key="close" className="w-6 h-6" />
+            <X className="w-6 h-6" />
           ) : (
             <>
-              <Menu key="menu" className="w-6 h-6" />
+              <Menu className="w-6 h-6" />
               <span className="text-sm font-medium">Meny</span>
             </>
           )}
         </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile dropdown */}
       {isOpen && (
         <div
           ref={menuRef}
           className="fixed top-16 right-4 bg-white rounded-lg shadow-lg p-4 z-40 space-y-2 md:hidden"
         >
           <button
-            onClick={scrollToOknoboken}
+            onClick={() => handleNavClick(ROUTES.HOME)}
             className={getMobileButtonClasses(ROUTES.HOME)}
           >
             Oknöboken
           </button>
+
           <button
-            onClick={() => {
-              navigate(ROUTES.ORDER);
-              setIsOpen(false);
-            }}
+            onClick={() => handleNavClick(ROUTES.ORDER)}
             className={getMobileButtonClasses(ROUTES.ORDER)}
           >
             Köp
           </button>
+
           <button
-            onClick={() => {
-              navigate(ROUTES.GALLERY);
-              setIsOpen(false);
-            }}
+            onClick={() => handleNavClick(ROUTES.GALLERY)}
             className={getMobileButtonClasses(ROUTES.GALLERY)}
           >
             Galleri
           </button>
+
           <button
-            onClick={() => {
-              navigate(ROUTES.ABOUT);
-              setIsOpen(false);
-            }}
+            onClick={() => handleNavClick(ROUTES.ABOUT)}
             className={getMobileButtonClasses(ROUTES.ABOUT)}
           >
             Om mig
           </button>
+
           <button
-            onClick={() => {
-              navigate(ROUTES.CONTACT);
-              setIsOpen(false);
-            }}
+            onClick={() => handleNavClick(ROUTES.CONTACT)}
             className={getMobileButtonClasses(ROUTES.CONTACT)}
           >
             Kontakt

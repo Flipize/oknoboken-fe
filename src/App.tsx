@@ -13,25 +13,7 @@ import Gallery from "./components/Gallery/Gallery";
 import "./App.css";
 import NotFound from "./components/NotFound/NotFound";
 import Order from "./components/Order/Order";
-import { useEffect } from "react";
 import Footer from "./components/Footer/Footer";
-
-const ScrollDownToComponent = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-    const target = document.getElementById("banner-end");
-
-    if (isMobile && target) {
-      setTimeout(() => {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
-    }
-  }, [pathname]);
-
-  return null;
-};
 
 function App() {
   return (
@@ -40,7 +22,6 @@ function App() {
         <Banner />
         <div id="banner-end" />
         <Navbar /> {/* ✅ renamed */}
-        <ScrollDownToComponent />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
