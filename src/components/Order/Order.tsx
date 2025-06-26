@@ -43,6 +43,7 @@ const Order = () => {
   });
 
   const totalPrice = basePrice * Number(formData.bookAmount); // Multiply base price by book amount
+  const swishLink = `swish://paymentrequest?version=1&payee=1231181189&amount=${totalPrice}&message=Okn%C3%B6boken%20-%20Best%C3%A4llning%20fr%C3%A5n%20lizettavonsmil.se`;
 
   const [errors, setErrors] = useState({
     name: "",
@@ -320,7 +321,7 @@ const Order = () => {
                     </p>
                     <ul className="list-disc list-inside text-sm text-gray-700">
                       <li>
-                        Mottagare nummer: <strong>12324424</strong>
+                        Mottagare nummer: <strong>1233391273</strong>
                       </li>
                       <li>
                         Belopp: <strong>{totalPrice} SEK</strong>
@@ -336,9 +337,12 @@ const Order = () => {
                       <p className="text-sm leading-relaxed max-w-xs">
                         Om Swish är installerat på denna enhet kan du klicka
                         här:{" "}
-                        <strong className="text-[#3b4d2c] cursor-pointer hover:underline">
-                          Betala med Swish
-                        </strong>
+                        <a
+                          href={swishLink}
+                          className="inline-block mt-2 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow hover:bg-green-700 transition"
+                        >
+                          Swisha {totalPrice} kr
+                        </a>
                       </p>
                     </div>
                   </div>
