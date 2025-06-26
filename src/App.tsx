@@ -1,11 +1,6 @@
 import Navbar from "./components/Navbar/Navbar"; // ✅ updated name
 import Banner from "./components/Banner/Banner";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AboutMe from "./components/AboutMe/AboutMe";
 import Home from "./components/Home/Home";
 import ContactMe from "./components/ContactMe/ContactMe";

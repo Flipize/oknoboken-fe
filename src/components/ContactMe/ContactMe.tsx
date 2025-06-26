@@ -75,6 +75,7 @@ const ContactMe = () => {
       console.error("POST-fel:", err);
       setResponseMessage("Något gick fel. Försök igen senare.");
     }
+    console.log("Response: " + responseMessage);
   };
 
   const handleChange = (
