@@ -43,7 +43,8 @@ const Order = () => {
   });
 
   const totalPrice = basePrice * Number(formData.bookAmount); // Multiply base price by book amount
-  const swishLink = `swish://paymentrequest?version=1&payee=1231181189&amount=${totalPrice}&message=Okn%C3%B6boken%20-%20Best%C3%A4llning%20fr%C3%A5n%20lizettavonsmil.se`;
+  const swishLink =
+    "swish://paymentrequest?version=1&payee=1231181189&message=Okn%C3%B6boken%20-%20Best%C3%A4llning%20fr%C3%A5n%20lizettavonsmil.se";
 
   const [errors, setErrors] = useState({
     name: "",
@@ -341,7 +342,7 @@ const Order = () => {
                           href={swishLink}
                           className="inline-block mt-2 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow hover:bg-green-700 transition"
                         >
-                          Swisha {totalPrice} kr
+                          Öppna Swish
                         </a>
                       </p>
                     </div>
