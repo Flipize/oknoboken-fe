@@ -80,7 +80,7 @@ const Gallery = () => {
   //if (loading) return <div>Loading...</div>; // Loading state
 
   return (
-    <div className="h-screen">
+    <div className="">
       <Card title="Galleri">
         <div>
           <div>
@@ -114,7 +114,7 @@ const Gallery = () => {
             </div>
           </div>
           {selectedImage && (
-            <div className="full-image-container">
+            <div className="full-image-container z-51">
               <div className="image-wrapper">
                 <div className="container">
                   <div className="overlay">

@@ -3,9 +3,9 @@ import { FaInstagram, FaFacebook, FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="regular-text-font bg-white shadow-[0_-4px_12px_rgba(0,0,0,0.1)] mt-12">
-      <div className="max-w-7xl mx-auto px-4 pt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 pt-8 flex flex-col items-center sm:flex-row sm:justify-center sm:items-start gap-16">
         {/* Social Links */}
-        <div>
+        <div className="text-center sm:text-left">
           <h3 className="regular-text-font font-semibold mb-4 text-gray-700">
             Följ mig
           </h3>
@@ -15,7 +15,7 @@ const Footer = () => {
                 href="https://www.instagram.com/lizettavonsmil?utm_source=ig_web_button_share_sheet&igsh=MWZ0cDBzN3dxc2NnZw=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1 rounded"
+                className="flex items-center justify-center sm:justify-start gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1 rounded"
               >
                 <FaInstagram size={20} />
                 <span>Instagram</span>
@@ -26,7 +26,7 @@ const Footer = () => {
                 href="https://www.facebook.com/lizette.nilsson.16"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1 rounded"
+                className="flex items-center justify-center sm:justify-start gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1 rounded"
               >
                 <FaFacebook size={20} />
                 <span>Facebook</span>
@@ -37,7 +37,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/lizette-nilsson-5b845453"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1 rounded"
+                className="flex items-center justify-center sm:justify-start gap-2 hover:bg-[#e7f3d4] hover:text-[#3b4d2c] transition duration-200 py-1 rounded"
               >
                 <FaLinkedin size={20} />
                 <span>LinkedIn</span>
@@ -46,17 +46,8 @@ const Footer = () => {
           </ol>
         </div>
 
-        <div>
-          <h3 className="regular-text-font font-semibold mb-4 text-gray-700">
-            Om mig
-          </h3>
-          <p className="text-sm text-gray-600 leading-relaxed">
-            Jag är Lizette Nilsson – författare till boken Oknöboken. Följ mig
-            på sociala medier för daglig inspiration!
-          </p>
-        </div>
-
-        <div>
+        {/* Contact */}
+        <div className="text-center sm:text-left">
           <h3 className="regular-text-font font-semibold mb-4 text-gray-700">
             Kontakt
           </h3>
