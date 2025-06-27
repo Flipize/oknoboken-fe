@@ -10,7 +10,7 @@ const AboutMe = () => {
           <div className="lg:w-2/3 space-y-4 max-w-prose lg:text-left">
             <Paragraph>
               Hej! Jag heter Lizette Nilsson och är författare till boken
-              Oknöboken.
+              "Oknö - Ostkustens Pärla".
             </Paragraph>
             <Paragraph>
               Jag är född 1963 i Vimmerby. Mitt efternamn som ogift var Anemyr.

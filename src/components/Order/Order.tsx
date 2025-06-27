@@ -3,6 +3,7 @@ import Card from "../Card";
 import axios from "axios";
 import useConfig from "../../useConfig";
 import swish from "/assets/images/swish.png";
+import Paragraph from "../Paragraph";
 
 const Order = () => {
   const [orderSent, setOrderSent] = useState(false); // To show a loading state
@@ -10,7 +11,7 @@ const Order = () => {
   const [responseMessage, setResponseMessage] = useState<string | null>(null);
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] =
     useState<string>("pick-up");
-  const basePrice = selectedDeliveryMethod === "send" ? 325 : 250;
+  const basePrice = selectedDeliveryMethod === "send" ? 335 : 250;
 
   /* constants so it’s easy to tweak later */
   const MIN_BOOKS = 1;
@@ -193,19 +194,19 @@ const Order = () => {
           {!orderSent && (
             <div>
               <div className="max-w-3xl mx-auto space-y-4 text-gray-800 leading-relaxed">
-                <p className="text-lg font-medium">
+                <Paragraph>
                   Du kan köpa boken på följande platser i Mönsterås:
-                </p>
+                </Paragraph>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Givells Ateljé – Storgatan 23</li>
-                  <li>Mönsterås Turistbyrå – Storgatan 34</li>
-                  <li>Kaffetorpets Camping (kiosken) – Oknövägen 56</li>
+                  <li> Erikas Galleri & Ateljé – Storgatan 25</li>
+                  <li>Mönsterås Turistbyrå – Sjögatan 29</li>
+                  <li>Kaffetorpets Camping (receptionen) – Oknövägen 86</li>
                 </ul>
-                <p>
+                <Paragraph>
                   Det går också bra att beställa boken här på hemsidan. Följ
                   bara instruktionerna i <strong>Steg 1</strong> och{" "}
-                  <strong>Steg 2</strong> nedan.
-                </p>
+                  <strong>Steg 2</strong> nedan. Priset för boken är 250 kr + eventuell frakt (85 kr).
+                </Paragraph>
               </div>
 
               <div>
@@ -216,9 +217,9 @@ const Order = () => {
                 <div className="max-w-3xl mx-auto px-4 space-y-8">
                   {/* Step 1: Book amount */}
                   <div className="space-y-4">
-                    <p className="text-lg font-semibold">
+                    <Paragraph>
                       1. Välj antal böcker
-                    </p>
+                    </Paragraph>
 
                     <label className="block text-sm font-medium mb-1 mr-4">
                       Antal böcker:
@@ -261,15 +262,15 @@ const Order = () => {
 
                   {/* Step 2: Delivery option */}
                   <div className="space-y-4">
-                    <p className="text-lg font-semibold">
+                    <Paragraph>
                       2. Leveransalternativ
-                    </p>
-                    <p className="text-sm text-gray-700">
+                    </Paragraph>
+                    <Paragraph>
                       Välj om du vill få boken skickad eller hämta den på
                       Lillövägen 36, Mönsterås.
-                    </p>
+                    </Paragraph>
                     <div className="space-y-2">
-                      <label className="block text-sm font-medium">
+                      <label className="block text-lg font-medium">
                         Leveransalternativ{" "}
                         <span className="text-red-600">*</span>
                       </label>
@@ -319,7 +320,7 @@ const Order = () => {
 
                   {/* Step 3: Payment */}
                   <div className="space-y-4">
-                    <p className="text-lg font-semibold">3. Betalning</p>
+                    <Paragraph>3. Betalning</Paragraph>
                     <p className="text-sm">
                       Pris: <span className="font-bold">{totalPrice} SEK</span>
                     </p>
@@ -364,11 +365,11 @@ const Order = () => {
 
                   {/* Step 4: Next steps */}
                   <div>
-                    <p className="mt-2 text-sm">
+                    <Paragraph>
                       När betalningen är genomförd kan du gå vidare med att
                       fylla i dina kontakt- och leveransuppgifter nedan i{" "}
                       <strong>steg 2</strong>.
-                    </p>
+                    </Paragraph>
                   </div>
                 </div>
               </div>
@@ -558,7 +559,8 @@ const Order = () => {
           )}
           {orderSent && (
             <div className="regular-text-font flex flex-col items-center text-center space-y-4">
-              <p>Tack för din beställning!</p>
+              <Paragraph>Tack för din beställning!</Paragraph>
+              <Paragraph>Jag återkommer med bekräftelse via email</Paragraph>
               <button
                 type="button"
                 className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"

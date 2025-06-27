@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import useConfig from "../../useConfig";
 import Card from "../Card";
+import Paragraph from "../Paragraph";
 
 interface RequestData {
   name: string;
@@ -104,6 +105,9 @@ const ContactMe = () => {
       <Card title="Kontakta mig">
         {!messageSent ? (
           <div className="max-w-2xl mx-auto px-4">
+            <Paragraph>
+              Har du frågor eller synpunkter får du gärna kontakta mig via formuläret nedan.
+            </Paragraph>
             <form
               className="regular-text-font space-y-4"
               onSubmit={(e) => e.preventDefault()}
@@ -111,7 +115,7 @@ const ContactMe = () => {
               {/* Namn */}
               <div>
                 <label htmlFor="input-name" className="block font-medium mb-1">
-                  Namn:
+                  Namn: <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
@@ -128,7 +132,7 @@ const ContactMe = () => {
               {/* Email */}
               <div>
                 <label htmlFor="input-email" className="block font-medium mb-1">
-                  Email:
+                  Email: <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="email"
@@ -148,7 +152,7 @@ const ContactMe = () => {
                   htmlFor="input-content"
                   className="block font-medium mb-1"
                 >
-                  Meddelande:
+                  Meddelande: <span className="text-red-600">*</span>
                 </label>
                 <textarea
                   id="input-content"
@@ -176,7 +180,8 @@ const ContactMe = () => {
           </div>
         ) : (
           <div className="regular-text-font container text-center space-y-4">
-            <p>{"Tack för ditt meddelande!"}</p>
+            <Paragraph>Tack för ditt meddelande!</Paragraph>
+            <Paragraph>Jag återkommer snarast via email.</Paragraph>
             <button
               type="button"
               className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
@@ -187,7 +192,7 @@ const ContactMe = () => {
                 setMessageSent(false);
               }}
             >
-              Nytt meddelande
+              Gå tillbaka
             </button>
           </div>
         )}

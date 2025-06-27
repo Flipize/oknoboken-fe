@@ -48,16 +48,6 @@ const Main = () => {
               lotsstationen, färjeläget, vattenrutschkanan på Lillön och mycket
               mer.
             </Paragraph>
-            <Paragraph>
-              Jag hoppas du är intresserad och vill köpa boken. Skicka din
-              adress till min mejladress info@lizettavonsmil.se, dit du vill att
-              jag ska skicka boken, och swisha totalt 325 kr varav 75 kr avser
-              frakt. Vill du hellre hämta den hemma hos mig på Lillövägen 36 på
-              Oknö, Mönsterås, går det också bra, då är priset endast 250 kr.
-              Meddela innan så jag är hemma. Boken kommer också att finnas till
-              försäljning hos Erikas Galleri och Atelje på Storgatan i
-              Mönsterås.
-            </Paragraph>
           </div>
           <div className="flex justify-center md:justify-end">
             <div className="flex flex-col items-center md:items-end">
