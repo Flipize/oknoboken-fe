@@ -1,8 +1,8 @@
 .square-image-container {
   position: relative;
-  padding-top: 100%;  /* Maintain square aspect ratio (height = width) */
-  overflow: hidden;   /* Hide any image overflow */
-  width: 100%;        /* Ensure it takes up the full column width */
+  padding-top: 100%; /* Maintain square aspect ratio (height = width) */
+  overflow: hidden; /* Hide any image overflow */
+  width: 100%; /* Ensure it takes up the full column width */
   cursor: pointer;
 }
 
@@ -11,54 +11,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;          /* Stretch the image to fill the container’s width */
-  height: 100%;         /* Stretch the image to fill the container’s height */
-  object-fit: cover;    /* Ensure the image covers the area while maintaining aspect ratio */
-  object-position: center;  /* Center the image inside the square */
-}
-
-.full-image-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For Internet Explorer */
-}
-
-.full-image-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Edge */
-}
-
-.overlay img {
-  max-height: 80vh;
-  max-width: 100%; /* Ensures it doesn't exceed container width */
-  min-width: 20vw;
-  height: auto; /* Maintain aspect ratio */
-  border: 1px solid;
-}
-
-.image-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center image and text horizontally */
-  max-width: 100%;
-  text-align: center;
-}
-
-.text-container {
-  width: 100%; /* Matches the width of the image */
-  max-width: 100%; /* Ensures the text doesn't exceed the image width */
-  text-align: center; /* Centers the text if you want */
-}
-
-.text-container p {
-  word-wrap: break-word; /* Prevents overflow if words are too long */
-  color: white;
-  background-color: rgba(0, 0, 0, 0.651);
+  width: 100%; /* Stretch the image to fill the container’s width */
+  height: 100%; /* Stretch the image to fill the container’s height */
+  object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
+  object-position: center; /* Center the image inside the square */
 }

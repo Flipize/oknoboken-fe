@@ -9,16 +9,15 @@ const Gallery = () => {
     description: string;
   }
 
-  const [data, setData] = useState<Image[]>([]); // To store the fetched data
-  const [loading, setLoading] = useState(true); // To show a loading state
-  const [error, setError] = useState<Error | null>(null); // To handle errors
+  const [data, setData] = useState<Image[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
 
   const handleImageClick = (image: Image) => {
     setSelectedImage(image);
-    console.log("Image set: " + image.filename);
   };
 
   const config = useConfig();
@@ -28,12 +27,12 @@ const Gallery = () => {
     if (!config) return;
     const fetchData = async () => {
       try {
-        const response = await fetch(apiUrl + "/api/v1/image/info/all"); // Replace with your API URL
+        const response = await fetch(apiUrl + "/api/v1/image/info/all");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const text = await response.text(); // Read response as text
-        const data = text ? JSON.parse(text) : []; // Parse only if not empty
+        const text = await response.text();
+        const data = text ? JSON.parse(text) : [];
         setData(data);
       } catch (err) {
         if (err instanceof Error) {
@@ -47,10 +46,9 @@ const Gallery = () => {
     };
 
     fetchData();
-  }, [config]); // Empty dependency array ensures this runs only once after the component mounts
+  }, [config]);
 
   useEffect(() => {
-    // Function to handle clicks outside the selected image
     const handleClickOutside = (event: MouseEvent) => {
       if (
         imageRef.current &&
@@ -59,25 +57,18 @@ const Gallery = () => {
         !textRef.current.contains(event.target as Node) &&
         selectedImage
       ) {
-        console.log("Deselecting image");
-        setSelectedImage(null); // Deselect image when clicking outside
+        setSelectedImage(null);
       }
     };
 
-    // Add event listener if there's a selected image
     if (selectedImage) {
       document.addEventListener("click", handleClickOutside);
     }
 
-    // Clean up event listener when selectedImage changes or component unmounts
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [selectedImage]);
-
-  //if (loading) return <div>Loading...</div>; // Loading state
-  //if (error) return <div>Error: {error.message}</div>; // Error state
-  //if (loading) return <div>Loading...</div>; // Loading state
 
   return (
     <div className="">
@@ -113,22 +104,36 @@ const Gallery = () => {
               </div>
             </div>
           </div>
+
           {selectedImage && (
-            <div className="full-image-container z-51">
-              <div className="image-wrapper">
-                <div className="container">
-                  <div className="overlay">
-                    <img
-                      ref={imageRef}
-                      src={apiUrl + "/api/v1/image/" + selectedImage.filename}
-                      alt={selectedImage.description}
-                      onClick={(e) => {
-                        e.stopPropagation(); // Prevents the click event from propagating up to parent elements
-                      }}
-                    />
-                    <div ref={textRef} className="text-container">
-                      <p>{selectedImage.description}</p>
-                    </div>
+            <div
+              className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center"
+              onClick={() => setSelectedImage(null)}
+            >
+              <div
+                className="relative bg-white rounded-xl shadow-2xl md:w-[95%] max-w-3xl md:max-h-[80vh]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-2 right-3 text-gray-500 text-2xl hover:text-gray-800 z-10"
+                >
+                  &times;
+                </button>
+
+                <div className="flex flex-col items-center p-4 pt-10">
+                  <img
+                    ref={imageRef}
+                    src={apiUrl + "/api/v1/image/" + selectedImage.filename}
+                    alt={selectedImage.description}
+                    className="max-h-[60vh] w-auto h-auto rounded-md mb-4"
+                  />
+                  <div
+                    ref={textRef}
+                    className="regular-text-font text-gray-800 text-center w-full"
+                  >
+                    {selectedImage.description}
                   </div>
                 </div>
               </div>
