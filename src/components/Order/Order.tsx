@@ -200,10 +200,10 @@ const Order = () => {
                     <li>Mönsterås Turistbyrå – Sjögatan 29</li>
                     <li>Kaffetorpets Camping (receptionen) – Oknövägen 86</li>
                   </ul>
-                  Det går också bra att beställa boken här på hemsidan. Följ
-                  bara instruktionerna i <strong>Steg 1</strong> och{" "}
-                  <strong>Steg 2</strong> nedan. Priset för boken är 250 kr +
-                  eventuell frakt (85 kr).
+                  Det går också bra att beställa boken här på hemsidan. Priset
+                  för boken är 250 kr + eventuell frakt (85 kr). Följ bara
+                  instruktionerna i <strong>Steg 1</strong> och{" "}
+                  <strong>Steg 2</strong> nedan.
                 </Paragraph>
               </div>
 
@@ -342,9 +342,8 @@ const Order = () => {
                     </div>
 
                     <Paragraph>
-                      När betalningen är genomförd kan du gå vidare med att
-                      fylla i dina kontakt- och leveransuppgifter nedan i{" "}
-                      <strong>steg 2</strong>.
+                      När betalningen är genomförd går du vidare med att fylla i
+                      dina kontakt- och leveransuppgifter.
                     </Paragraph>
                   </div>
                 </div>
