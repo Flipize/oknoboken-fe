@@ -5,11 +5,7 @@ interface ParagraphProps {
 }
 
 const Paragraph = ({ children }: ParagraphProps) => {
-  return (
-    <p className="text-base sm:text-lg">
-      {children}
-    </p>
-  );
+  return <p className="regular-text-font text-base sm:text-lg">{children}</p>;
 };
 
 export default Paragraph;

@@ -38,3 +38,17 @@ p {
   font-weight: 400;
   font-style: normal;
 }
+
+.italic-text-font {
+  font-family: "Lora";
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
+
+h4 {
+  font-family: "Lora";
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
