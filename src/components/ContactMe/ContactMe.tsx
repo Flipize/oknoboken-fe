@@ -106,7 +106,8 @@ const ContactMe = () => {
         {!messageSent ? (
           <div className="max-w-2xl mx-auto px-4">
             <Paragraph>
-              Har du frågor eller synpunkter får du gärna kontakta mig via formuläret nedan.
+              Har du frågor eller synpunkter får du gärna kontakta mig via
+              formuläret nedan.
             </Paragraph>
             <form
               className="regular-text-font space-y-4"
@@ -114,7 +115,10 @@ const ContactMe = () => {
             >
               {/* Namn */}
               <div>
-                <label htmlFor="input-name" className="block font-medium mb-1">
+                <label
+                  htmlFor="input-name"
+                  className="regular-text-font block font-medium mb-1"
+                >
                   Namn: <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -131,7 +135,10 @@ const ContactMe = () => {
 
               {/* Email */}
               <div>
-                <label htmlFor="input-email" className="block font-medium mb-1">
+                <label
+                  htmlFor="input-email"
+                  className="regular-text-font block font-medium mb-1"
+                >
                   Email: <span className="text-red-600">*</span>
                 </label>
                 <input
@@ -150,7 +157,7 @@ const ContactMe = () => {
               <div>
                 <label
                   htmlFor="input-content"
-                  className="block font-medium mb-1"
+                  className="regular-text-font block font-medium mb-1"
                 >
                   Meddelande: <span className="text-red-600">*</span>
                 </label>

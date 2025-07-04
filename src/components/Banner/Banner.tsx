@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "/assets/images/Logo.svg";
 
 const Banner = () => {
@@ -16,11 +17,13 @@ const Banner = () => {
 
       {/* Hero content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-        <img
-          src={Logo}
-          alt="Logo"
-          className="w-[250px] md:w-[500px] max-w-full drop-shadow-lg"
-        />
+        <Link to="/">
+          <img
+            src={Logo}
+            alt="Logo"
+            className="w-[250px] md:w-[500px] max-w-full drop-shadow-lg cursor-pointer"
+          />
+        </Link>
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ const Main = () => {
               />
               <button
                 type="button"
-                className="mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition w-9/10"
+                className="regular-text-font mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition w-9/10"
                 onClick={() => navigate("/order")}
               >
                 Köp boken
