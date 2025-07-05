@@ -43,7 +43,7 @@ const Order = () => {
   });
 
   const totalPrice = basePrice * Number(formData.bookAmount); // Multiply base price by book amount
-  const swishNumber = "1231181189";
+  const swishNumber = "1233391273";
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(swishNumber);
