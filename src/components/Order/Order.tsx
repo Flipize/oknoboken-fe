@@ -196,11 +196,11 @@ const Order = () => {
                   <ul className="mt-1 md:list-disc list-inside">
                     <li>Erikas Galleri & Ateljé – Storgatan 25</li>
                     <li>Mönsterås Turistbyrå – Sjögatan 29 <span className="text-sm text-gray-500">(säsongsstängt)</span>
-</li>
+                    </li>
                     <li>Kaffetorpets Camping (receptionen) – Oknövägen 86 <span className="text-sm text-gray-500">(säsongsstängt)</span></li>
                   </ul>
                   Det går också bra att beställa boken här på hemsidan. Priset
-                  för boken är 250 kr + eventuell frakt (85 kr). Du kan även få fri leverans inom Mönsterås Kommun. Följ
+                  för boken är 250 kr + eventuell frakt (85 kr). Följ
                   instruktionerna i <strong>Steg 1</strong> och{" "}
                   <strong>Steg 2</strong> nedan.
                 </Paragraph>
@@ -259,34 +259,34 @@ const Order = () => {
                   <div className="mb-4">
                     <h4> B. Välj leveransalternativ </h4>
                     <Paragraph>
-                      Välj om du vill få boken skickad via PostNord, hämta den på
-                      Lillövägen 36, Mönsterås, eller få den levererad inom Mönsterås Kommun:
+                      Välj om du vill få boken skickad via PostNord eller hämta den på
+                      Lillövägen 36, Mönsterås:
                     </Paragraph>
 
                     <div className="flex gap-6 max-sm:flex-col">
-  <label className="flex items-center gap-2">
-    <input
-      type="radio"
-      name="delivery"
-      value="send"
-      checked={selectedDeliveryMethod === "send"}
-      onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
-    />
-    <span className="regular-text-font ml-1">Skicka med PostNord</span>
-  </label>
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="delivery"
+                          value="send"
+                          checked={selectedDeliveryMethod === "send"}
+                          onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
+                        />
+                        <span className="regular-text-font ml-1">Skicka med PostNord</span>
+                      </label>
 
-  <label className="flex items-center gap-2">
-    <input
-      type="radio"
-      name="delivery"
-      value="pick-up"
-      checked={selectedDeliveryMethod === "pick-up"}
-      onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
-    />
-    <span className="regular-text-font ml-1">Hämta</span>
-  </label>
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="delivery"
+                          value="pick-up"
+                          checked={selectedDeliveryMethod === "pick-up"}
+                          onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
+                        />
+                        <span className="regular-text-font ml-1">Hämta</span>
+                      </label>
 
-  <label className="flex items-center gap-2">
+                      {/* <label className="flex items-center gap-2">
     <input
       type="radio"
       name="delivery"
@@ -295,8 +295,8 @@ const Order = () => {
       onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
     />
     <span className="regular-text-font ml-1">Fri leverans inom Mönsterås Kommun</span>
-  </label>
-</div>
+  </label> */}
+                    </div>
 
                     {selectedDeliveryMethod === "send" && (
                       <p className="italic-text-font text-base sm:text-lg mt-1">
