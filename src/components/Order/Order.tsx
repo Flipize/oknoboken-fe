@@ -4,6 +4,7 @@ import axios from "axios";
 import useConfig from "../../useConfig";
 import swish from "/assets/images/swish.png";
 import Paragraph from "../Paragraph";
+import { Copy } from "lucide-react";
 
 const Order = () => {
   const [orderSent, setOrderSent] = useState(false); // To show a loading state
@@ -44,6 +45,10 @@ const Order = () => {
 
   const totalPrice = basePrice * Number(formData.bookAmount); // Multiply base price by book amount
   const swishNumber = "1233391273";
+  const inputClasses =
+    "w-full border border-[#cfc7b8] rounded-lg px-3 py-2 focus:border-[#1f4f7a] focus:outline-none focus:ring-2 focus:ring-[#1f4f7a]/20";
+  const primaryButtonClasses =
+    "action-button bg-[#1f4f7a] text-white px-6 py-2 hover:bg-[#173d5f] transition shadow-sm";
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(swishNumber);
@@ -185,7 +190,7 @@ const Order = () => {
   };
 
   return (
-    <div className="max-w-600 mx-auto">
+    <div className="mx-auto">
       <Card title="Köp Oknöboken">
         <div>
           {!orderSent && (
@@ -207,15 +212,17 @@ const Order = () => {
               </div>
 
               {/* Step 1: Betala via Swish */}
-              <div>
-                <h2 className="regular-text-font text-center mb-4">
+              <div className="mt-8">
+                <h2 className="regular-text-font text-center text-2xl text-[#25301f] mb-5">
                   Steg 1: Betala via swish
                 </h2>
 
-                <div className="max-w-3xl mx-auto">
+                <div className="max-w-3xl mx-auto rounded-lg border border-[#e6dfd2] bg-[#fbfaf6] p-4 sm:p-6">
                   {/* Step A: Book amount */}
-                  <div className="mb-4">
-                    <h4> A. Välj antal böcker </h4>
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-[#25301f]">
+                      A. Välj antal böcker
+                    </h4>
                     <label className="regular-text-font text-base sm:text-lg block mr-4">
                       Antal böcker:
                     </label>
@@ -227,8 +234,7 @@ const Order = () => {
                         type="button"
                         onClick={handleDecrement}
                         disabled={Number(formData.bookAmount) <= MIN_BOOKS}
-                        className="regular-text-font h-8 w-8 flex items-center justify-center rounded bg-gray-200 text-lg font-semibold
-                 hover:bg-gray-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="stepper-button regular-text-font h-9 w-9 flex items-center justify-center bg-[#e6dfd2] text-lg font-semibold hover:bg-[#d8cfbd] disabled:opacity-40 disabled:cursor-not-allowed"
                         aria-label="Minska antal böcker"
                       >
                         –
@@ -238,7 +244,7 @@ const Order = () => {
                       <input
                         readOnly
                         value={formData.bookAmount} // now a string
-                        className="w-14 text-center border border-gray-300 rounded h-10 bg-white"
+                        className="w-14 text-center border border-[#cfc7b8] rounded-lg h-10 bg-white"
                       />
 
                       {/* + button */}
@@ -246,8 +252,7 @@ const Order = () => {
                         type="button"
                         onClick={handleIncrement}
                         disabled={Number(formData.bookAmount) >= MAX_BOOKS}
-                        className="h-8 w-8 flex items-center justify-center rounded bg-gray-200 text-lg font-semibold
-                 hover:bg-gray-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="stepper-button h-9 w-9 flex items-center justify-center bg-[#e6dfd2] text-lg font-semibold hover:bg-[#d8cfbd] disabled:opacity-40 disabled:cursor-not-allowed"
                         aria-label="Öka antal böcker"
                       >
                         +
@@ -256,34 +261,50 @@ const Order = () => {
                   </div>
 
                   {/* Step B: Delivery option */}
-                  <div className="mb-4">
-                    <h4> B. Välj leveransalternativ </h4>
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-[#25301f]">
+                      B. Välj leveransalternativ
+                    </h4>
                     <Paragraph>
                       Välj om du vill få boken skickad via PostNord eller hämta den på
                       Lillövägen 36, Mönsterås:
                     </Paragraph>
 
-                    <div className="flex gap-6 max-sm:flex-col">
-                      <label className="flex items-center gap-2">
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <label
+                        className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition ${
+                          selectedDeliveryMethod === "send"
+                            ? "border-[#a1c563] bg-[#eef8dc]"
+                            : "border-[#e0d8ca] bg-white hover:border-[#bfd98a]"
+                        }`}
+                      >
                         <input
                           type="radio"
                           name="delivery"
                           value="send"
                           checked={selectedDeliveryMethod === "send"}
                           onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
+                          className="accent-[#a1c563]"
                         />
-                        <span className="regular-text-font ml-1">Skicka med PostNord</span>
+                        <span className="regular-text-font">Skicka med PostNord</span>
                       </label>
 
-                      <label className="flex items-center gap-2">
+                      <label
+                        className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition ${
+                          selectedDeliveryMethod === "pick-up"
+                            ? "border-[#a1c563] bg-[#eef8dc]"
+                            : "border-[#e0d8ca] bg-white hover:border-[#bfd98a]"
+                        }`}
+                      >
                         <input
                           type="radio"
                           name="delivery"
                           value="pick-up"
                           checked={selectedDeliveryMethod === "pick-up"}
                           onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
+                          className="accent-[#a1c563]"
                         />
-                        <span className="regular-text-font ml-1">Hämta</span>
+                        <span className="regular-text-font">Hämta</span>
                       </label>
 
                       {/* <label className="flex items-center gap-2">
@@ -322,10 +343,15 @@ const Order = () => {
 
                   {/* Step C: Payment */}
                   <div className="mb-4">
-                    <h4>C. Betalning</h4>
-                    <Paragraph>
-                      Pris: <span className="font-bold">{totalPrice} SEK</span>
-                    </Paragraph>
+                    <h4 className="font-semibold text-[#25301f]">C. Betalning</h4>
+                    <div className="mb-4 rounded-lg bg-white border border-[#e0d8ca] px-4 py-3">
+                      <p className="regular-text-font m-0 text-base sm:text-lg">
+                        Totalt att betala:{" "}
+                        <span className="font-bold text-[#25301f]">
+                          {totalPrice} SEK
+                        </span>
+                      </p>
+                    </div>
                     <Paragraph>
                       Swisha beloppet till <strong>Markani AB</strong>:
                       <ul className="list-disc list-inside">
@@ -333,11 +359,11 @@ const Order = () => {
                           Mottagare nummer: <strong>{swishNumber}</strong>{" "}
                           <button
                             onClick={copyToClipboard}
-                            className="text-gray-500 text-sm ml-1 hover:text-gray-700 transition"
+                            className="inline-flex align-middle text-[#1f4f7a] ml-1 hover:text-[#173d5f] transition"
                             aria-label="Kopiera Swish-nummer"
                             title="kopiera"
                           >
-                            📋
+                            <Copy size={16} />
                           </button>
                         </li>
                         <li>
@@ -363,12 +389,12 @@ const Order = () => {
               </div>
 
               {/* Step 2: Ange kontaktuppgifter */}
-              <div>
-                <h2 className="regular-text-font text-center mb-4">
+              <div className="mt-8">
+                <h2 className="regular-text-font text-center text-2xl text-[#25301f] mb-5">
                   Steg 2: Ange kontaktuppgifter
                 </h2>
 
-                <div className="max-w-3xl mx-auto">
+                <div className="max-w-3xl mx-auto rounded-lg border border-[#e6dfd2] bg-[#fbfaf6] p-4 sm:p-6">
                   <form className="regular-text-font">
                     <div className="mb-4">
                       <label htmlFor="input-name">
@@ -381,7 +407,7 @@ const Order = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="w-full border border-gray-300 rounded px-3 py-2"
+                        className={inputClasses}
                       />
                       {errors.name && (
                         <p className="text-red-500 text-sm">{errors.name}</p>
@@ -399,7 +425,7 @@ const Order = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="w-full border border-gray-300 rounded px-3 py-2"
+                        className={inputClasses}
                       />
                       {errors.email && (
                         <p className="text-red-500 text-sm">{errors.email}</p>
@@ -420,7 +446,7 @@ const Order = () => {
                             phoneNumber: e.target.value,
                           })
                         }
-                        className="w-full border border-gray-300 rounded px-3 py-2"
+                        className={inputClasses}
                       />
                       {errors.phoneNumber && (
                         <p className="text-red-500 text-sm">
@@ -446,7 +472,7 @@ const Order = () => {
                                 address: e.target.value,
                               })
                             }
-                            className="w-full border border-gray-300 rounded px-3 py-2"
+                            className={inputClasses}
                           />
                           {errors.address && (
                             <p className="text-red-500 text-sm">
@@ -469,7 +495,7 @@ const Order = () => {
                                 postalCode: e.target.value,
                               })
                             }
-                            className="w-full border border-gray-300 rounded px-3 py-2"
+                            className={inputClasses}
                           />
                           {errors.postalCode && (
                             <p className="text-red-500 text-sm">
@@ -489,7 +515,7 @@ const Order = () => {
                             onChange={(e) =>
                               setFormData({ ...formData, city: e.target.value })
                             }
-                            className="w-full border border-gray-300 rounded px-3 py-2"
+                            className={inputClasses}
                           />
                           {errors.city && (
                             <p className="text-red-500 text-sm">
@@ -509,7 +535,7 @@ const Order = () => {
                         onChange={(e) =>
                           setFormData({ ...formData, message: e.target.value })
                         }
-                        className="w-full border border-gray-300 rounded px-3 py-2"
+                        className={inputClasses}
                       ></textarea>
                     </div>
 
@@ -517,7 +543,7 @@ const Order = () => {
                       <button
                         type="button"
                         onClick={handleOnClickSend}
-                        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+                        className={primaryButtonClasses}
                       >
                         Skicka
                       </button>
@@ -533,7 +559,7 @@ const Order = () => {
               <Paragraph>Jag återkommer med bekräftelse via email</Paragraph>
               <button
                 type="button"
-                className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+                className={primaryButtonClasses}
                 onClick={() => setOrderSent(false)}
               >
                 Gå tillbaka

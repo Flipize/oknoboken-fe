@@ -9,8 +9,8 @@ const Main = () => {
   return (
     <div>
       <Card title="Oknö - Ostkustens Pärla">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8">
-          <div className="lg:w-2/3 space-y-4 max-w-prose lg:text-left">
+        <div className="flex min-w-0 flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-10">
+          <div className="w-full min-w-0 lg:w-2/3 space-y-4 max-w-prose lg:text-left">
             <Paragraph>
               Min bok om Oknö är naturligtvis en hyllning till denna underbara
               plats men jag vill också genom boken ge fler möjlighet att få
@@ -49,16 +49,16 @@ const Main = () => {
               mer.
             </Paragraph>
           </div>
-          <div className="flex justify-center md:justify-end">
-            <div className="flex flex-col items-center md:items-end">
+          <div className="w-full lg:w-auto flex justify-center md:justify-end">
+            <div className="w-full max-w-xs sm:max-w-sm flex flex-col items-center md:items-end">
               <img
                 src={Boken}
                 alt="Bild på Oknöbokens omslag"
-                className="max-w-100 shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-gray-200 w-9/10"
+                className="w-full shadow-[0_12px_34px_rgba(42,51,38,0.22)] border border-[#d8d0c0]"
               />
               <button
                 type="button"
-                className="regular-text-font mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition w-9/10"
+                className="regular-text-font mt-4 w-full px-5 py-3 bg-[#1f4f7a] text-white rounded hover:bg-[#173d5f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f4f7a] transition shadow-sm"
                 onClick={() => navigate("/order")}
               >
                 Köp boken

@@ -7,6 +7,94 @@ a {
   color: inherit;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #f7f5ef;
+  color: #1f2933;
+}
+
+main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.content-card {
+  box-sizing: border-box;
+  display: block;
+  width: auto;
+  max-width: calc(100vw - 1rem);
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .content-card {
+    width: 90%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.content-card,
+.content-card * {
+  min-width: 0;
+}
+
+.content-card > * {
+  max-width: 100%;
+}
+
+.content-card h1 {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.content-card p {
+  width: 100%;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.nav-button,
+.action-button,
+.stepper-button {
+  border-radius: 999px !important;
+}
+
+@media (max-width: 639px) {
+  .content-card {
+    width: 360px !important;
+    max-width: calc(100% - 1rem) !important;
+  }
+
+  .content-card h1,
+  .content-card p,
+  .content-card .max-w-prose {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .content-card h1 {
+    font-size: 1.65rem !important;
+    line-height: 1.18 !important;
+  }
+
+  .content-card p {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -16,6 +104,7 @@ p {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  line-height: 1.75;
 }
 
 .h1-text-font {

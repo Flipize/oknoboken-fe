@@ -6,14 +6,14 @@ const Banner = () => {
     <>
       <div
         data-darkreader-skip
-        className="relative h-[300px] md:h-[calc(100vh-80px)] bg-cover bg-center"
+        className="relative h-[300px] md:h-[calc(100vh-80px)] bg-cover bg-center md:bg-[center_48%]"
         style={{
           backgroundImage: `url(${import.meta.env.BASE_URL
             }assets/images/Hero.jpg)`,
         }}
       >
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/45 md:bg-black/50" />
         {/* <div
           className="absolute top-[20%] w-full flex justify-center z-30"
           style={{ fontFamily: 'Great Vibes' }}
@@ -47,7 +47,7 @@ const Banner = () => {
             <img
               src={Logo}
               alt="Logo"
-              className="w-[250px] md:w-[500px] max-w-full drop-shadow-lg cursor-pointer"
+              className="w-[210px] sm:w-[280px] md:w-[500px] max-w-full drop-shadow-lg cursor-pointer"
             />
           </Link>
         </div>

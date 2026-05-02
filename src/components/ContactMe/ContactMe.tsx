@@ -124,7 +124,7 @@ const ContactMe = () => {
                 <input
                   type="text"
                   id="input-name"
-                  className="w-full border border-gray-300 rounded px-3 py-2"
+                  className="w-full border border-[#cfc7b8] rounded-lg px-3 py-2 focus:border-[#1f4f7a] focus:outline-none focus:ring-2 focus:ring-[#1f4f7a]/20"
                   value={formData.name}
                   onChange={handleChange}
                 />
@@ -144,7 +144,7 @@ const ContactMe = () => {
                 <input
                   type="email"
                   id="input-email"
-                  className="w-full border border-gray-300 rounded px-3 py-2"
+                  className="w-full border border-[#cfc7b8] rounded-lg px-3 py-2 focus:border-[#1f4f7a] focus:outline-none focus:ring-2 focus:ring-[#1f4f7a]/20"
                   value={formData.email}
                   onChange={handleChange}
                 />
@@ -164,7 +164,7 @@ const ContactMe = () => {
                 <textarea
                   id="input-content"
                   rows={4}
-                  className="w-full border border-gray-300 rounded px-3 py-2"
+                  className="w-full border border-[#cfc7b8] rounded-lg px-3 py-2 focus:border-[#1f4f7a] focus:outline-none focus:ring-2 focus:ring-[#1f4f7a]/20"
                   value={formData.content}
                   onChange={handleChange}
                 />
@@ -178,7 +178,7 @@ const ContactMe = () => {
                 <button
                   type="button"
                   onClick={handleOnClickSend}
-                  className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+                  className="action-button bg-[#1f4f7a] text-white px-6 py-2 hover:bg-[#173d5f] transition shadow-sm"
                 >
                   Skicka
                 </button>
@@ -191,7 +191,7 @@ const ContactMe = () => {
             <Paragraph>Jag återkommer snarast via email.</Paragraph>
             <button
               type="button"
-              className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+              className="action-button bg-[#1f4f7a] text-white px-6 py-2 hover:bg-[#173d5f] transition shadow-sm"
               onClick={() => {
                 setFormData({ name: "", email: "", content: "" });
                 setErrors({ name: "", email: "", content: "" });

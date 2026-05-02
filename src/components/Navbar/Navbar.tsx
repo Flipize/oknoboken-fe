@@ -4,11 +4,11 @@ import { Menu, X } from "lucide-react";
 import { ROUTES } from "./../routes";
 
 const baseButtonClasses =
-  "regular-text-font px-4 py-2 text-sm md:text-base font-medium transition duration-200 rounded";
-const hoverClasses = "hover:bg-[#e7f3d4] hover:text-[#3b4d2c]";
+  "nav-button regular-text-font px-4 py-2 text-sm md:text-base font-medium transition duration-200";
+const hoverClasses = "hover:bg-[#eef8dc] hover:text-[#45651f]";
 const mobileButtonBaseClasses =
-  "regular-text-font block w-full text-left px-4 py-2 rounded";
-const mobileHoverClasses = "hover:bg-[#e7f3d4] hover:text-[#3b4d2c]";
+  "nav-button regular-text-font block w-full text-left px-4 py-2";
+const mobileHoverClasses = "hover:bg-[#eef8dc] hover:text-[#45651f]";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,14 +44,14 @@ const Navbar = () => {
   const getButtonClasses = (path: string) =>
     `${baseButtonClasses} ${
       isActive(path)
-        ? "bg-[#a1c563] text-white"
+        ? "bg-[#a1c563] text-white shadow-sm"
         : `text-gray-800 ${hoverClasses}`
     }`;
 
   const getMobileButtonClasses = (path: string) =>
     `${mobileButtonBaseClasses} ${
       isActive(path)
-        ? "bg-[#a1c563] text-white"
+        ? "bg-[#a1c563] text-white shadow-sm"
         : `text-gray-800 ${mobileHoverClasses}`
     }`;
 
@@ -74,7 +74,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50">
       {/* Desktop navbar */}
-      <div className="hidden md:flex justify-center gap-6 bg-white/90 backdrop-blur-md shadow-md px-4 py-3">
+      <div className="hidden md:flex justify-center gap-5 bg-white/90 backdrop-blur-md shadow-[0_4px_16px_rgba(42,51,38,0.12)] border-b border-[#e6dfd2] px-4 py-3">
         <button
           onClick={() => handleNavClick(ROUTES.HOME)}
           className={getButtonClasses(ROUTES.HOME)}
@@ -116,7 +116,7 @@ const Navbar = () => {
         <button
           aria-label="Toggle menu"
           onClick={() => setIsOpen(!isOpen)}
-          className="regular-text-font text-white p-2 bg-black/40 rounded-full hover:bg-black/60 transition flex items-center gap-2"
+          className="regular-text-font text-white p-2 bg-black/45 rounded-full hover:bg-black/60 transition flex items-center gap-2 shadow-md"
         >
           {isOpen ? (
             <X className="w-6 h-6" />
@@ -133,7 +133,7 @@ const Navbar = () => {
       {isOpen && (
         <div
           ref={menuRef}
-          className="fixed top-16 right-4 bg-white rounded-lg shadow-lg p-4 z-40 space-y-2 md:hidden"
+          className="fixed top-16 right-4 bg-white rounded-lg shadow-lg border border-[#e6dfd2] p-4 z-40 space-y-2 md:hidden"
         >
           <button
             onClick={() => handleNavClick(ROUTES.HOME)}
