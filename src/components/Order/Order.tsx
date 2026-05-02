@@ -272,7 +272,7 @@ const Order = () => {
 
                     <div className="grid gap-3 sm:grid-cols-2">
                       <label
-                        className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition ${
+                        className={`flex cursor-pointer items-center rounded-lg border p-4 transition ${
                           selectedDeliveryMethod === "send"
                             ? "border-[#a1c563] bg-[#eef8dc]"
                             : "border-[#e0d8ca] bg-white hover:border-[#bfd98a]"
@@ -286,11 +286,13 @@ const Order = () => {
                           onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
                           className="accent-[#a1c563]"
                         />
-                        <span className="regular-text-font">Skicka med PostNord</span>
+                        <span className="regular-text-font ml-2">
+                          Skicka med PostNord
+                        </span>
                       </label>
 
                       <label
-                        className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition ${
+                        className={`flex cursor-pointer items-center rounded-lg border p-4 transition ${
                           selectedDeliveryMethod === "pick-up"
                             ? "border-[#a1c563] bg-[#eef8dc]"
                             : "border-[#e0d8ca] bg-white hover:border-[#bfd98a]"
@@ -304,7 +306,7 @@ const Order = () => {
                           onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
                           className="accent-[#a1c563]"
                         />
-                        <span className="regular-text-font">Hämta</span>
+                        <span className="regular-text-font ml-2">Hämta</span>
                       </label>
 
                       {/* <label className="flex items-center gap-2">

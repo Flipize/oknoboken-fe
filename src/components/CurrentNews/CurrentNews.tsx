@@ -40,16 +40,15 @@ const CurrentNews = () => {
             </div>
 
             <p className="regular-text-font mt-5 text-base leading-7 text-[#2d332a] sm:text-lg sm:leading-8">
-              Läs mer i{" "}
+              Läs mer i Facebook-gruppen för gatuloppis på Oknö:{" "}
               <a
                 href="https://www.facebook.com/profile.php?id=61583954412440"
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-blue-700 underline decoration-2 underline-offset-4 hover:text-blue-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+                className="break-all !text-[#0000ee] !underline hover:!text-[#551a8b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0000ee]"
               >
-                Facebook-gruppen för gatuloppis på Oknö
+                https://www.facebook.com/profile.php?id=61583954412440
               </a>
-              .
             </p>
 
             <div className="mt-5 overflow-hidden rounded border border-[#d8d0c0] bg-white shadow-sm">
