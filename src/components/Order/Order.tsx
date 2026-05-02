@@ -202,7 +202,7 @@ const Order = () => {
                     <li>Erikas Galleri & Ateljé – Storgatan 25</li>
                     <li>Mönsterås Turistbyrå – Sjögatan 29 <span className="text-sm text-gray-500">(säsongsstängt)</span>
                     </li>
-                    <li>Kaffetorpets Camping (receptionen) – Oknövägen 86 <span className="text-sm text-gray-500">(säsongsstängt)</span></li>
+                    <li>Kaffetorpets Camping (receptionen) – Oknövägen 86</li>
                   </ul>
                   Det går också bra att beställa boken här på hemsidan. Priset
                   för boken är 250 kr + eventuell frakt (85 kr). Följ
