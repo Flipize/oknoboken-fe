@@ -14,10 +14,7 @@ const Banner = () => {
       >
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/45 md:bg-black/50" />
-        {/* <div
-          className="absolute top-[20%] w-full flex justify-center z-30"
-          style={{ fontFamily: 'Great Vibes' }}
-        >
+        {/* <div className="absolute top-[20%] w-full flex justify-center z-30">
           <span
             className="
       text-red-600

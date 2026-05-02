@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:wght@400..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import "tailwindcss";
 
 a {
@@ -19,6 +18,14 @@ body {
   overflow-x: hidden;
   background: #f7f5ef;
   color: #1f2933;
+  font-family: "Lora", serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 main {
@@ -105,6 +112,14 @@ p {
   font-weight: 400;
   font-style: normal;
   line-height: 1.75;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 .h1-text-font {
