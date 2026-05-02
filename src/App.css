@@ -72,10 +72,13 @@ main {
   overflow-wrap: break-word;
 }
 
-.nav-button,
 .action-button,
 .stepper-button {
   border-radius: 999px !important;
+}
+
+.nav-button {
+  border-radius: 0.25rem !important;
 }
 
 @media (max-width: 639px) {

@@ -4,10 +4,10 @@ import { Menu, X } from "lucide-react";
 import { ROUTES } from "./../routes";
 
 const baseButtonClasses =
-  "nav-button regular-text-font px-4 py-2 text-sm md:text-base font-medium transition duration-200";
+  "nav-button regular-text-font px-4 py-2 text-sm md:text-base font-medium transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f4f7a]";
 const hoverClasses = "hover:bg-[#eef8dc] hover:text-[#45651f]";
 const mobileButtonBaseClasses =
-  "nav-button regular-text-font block w-full text-left px-4 py-2";
+  "nav-button regular-text-font block w-full text-left px-4 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f4f7a]";
 const mobileHoverClasses = "hover:bg-[#eef8dc] hover:text-[#45651f]";
 
 const Navbar = () => {
@@ -74,7 +74,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50">
       {/* Desktop navbar */}
-      <div className="hidden md:flex justify-center gap-5 bg-white/90 backdrop-blur-md shadow-[0_4px_16px_rgba(42,51,38,0.12)] border-b border-[#e6dfd2] px-4 py-3">
+      <div className="hidden md:flex justify-center gap-3 bg-white/90 backdrop-blur-md shadow-[0_4px_16px_rgba(42,51,38,0.12)] border-b border-[#e6dfd2] px-4 py-3">
         <button
           onClick={() => handleNavClick(ROUTES.HOME)}
           className={getButtonClasses(ROUTES.HOME)}
@@ -116,7 +116,7 @@ const Navbar = () => {
         <button
           aria-label="Toggle menu"
           onClick={() => setIsOpen(!isOpen)}
-          className="regular-text-font text-white p-2 bg-black/45 rounded-full hover:bg-black/60 transition flex items-center gap-2 shadow-md"
+          className="regular-text-font text-white p-2 bg-black/45 rounded hover:bg-black/60 transition flex items-center gap-2 shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1f4f7a]"
         >
           {isOpen ? (
             <X className="w-6 h-6" />
