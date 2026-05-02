@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AboutMe from "./components/AboutMe/AboutMe";
 import Home from "./components/Home/Home";
 import ContactMe from "./components/ContactMe/ContactMe";
+import CurrentNews from "./components/CurrentNews/CurrentNews";
 import Gallery from "./components/Gallery/Gallery";
 import "./App.css";
 import NotFound from "./components/NotFound/NotFound";
@@ -20,6 +21,7 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="latest" element={<CurrentNews />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="about" element={<AboutMe />} />
             <Route path="contact" element={<ContactMe />} />

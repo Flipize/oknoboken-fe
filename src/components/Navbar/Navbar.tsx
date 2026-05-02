@@ -90,6 +90,13 @@ const Navbar = () => {
         </button>
 
         <button
+          onClick={() => handleNavClick(ROUTES.CURRENT_NEWS)}
+          className={getButtonClasses(ROUTES.CURRENT_NEWS)}
+        >
+          Aktuellt
+        </button>
+
+        <button
           onClick={() => handleNavClick(ROUTES.GALLERY)}
           className={getButtonClasses(ROUTES.GALLERY)}
         >
@@ -147,6 +154,13 @@ const Navbar = () => {
             className={getMobileButtonClasses(ROUTES.ORDER)}
           >
             Köp
+          </button>
+
+          <button
+            onClick={() => handleNavClick(ROUTES.CURRENT_NEWS)}
+            className={getMobileButtonClasses(ROUTES.CURRENT_NEWS)}
+          >
+            Aktuellt
           </button>
 
           <button
